@@ -62,14 +62,14 @@ p{margin:0}
 .nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-size:25px;letter-spacing:.01em;color:var(--claro);white-space:nowrap}
 .logo svg{width:26px;height:26px;flex:none}
-.nav-links{display:flex;gap:22px;margin-left:auto}
-.nav-links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--suave)}
+.nav-links{display:flex;gap:20px;margin-left:auto}
+.nav-links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--suave);white-space:nowrap}
 .nav-links a:hover{color:var(--claro)}
 .estado{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(233,236,221,.08);white-space:nowrap}
 .estado .punto{width:8px;height:8px;border-radius:50%;background:#7FCB8E;box-shadow:0 0 0 4px rgba(127,203,142,.18)}
 .estado.cerrado .punto{background:#D9876A;box-shadow:0 0 0 4px rgba(217,135,106,.18)}
-.nav .btn{padding:11px 18px;font-size:15px}
-@media (max-width:900px){.nav-links{display:none}.nav .estado{margin-left:auto}}
+.nav .btn{padding:11px 18px;font-size:15px;white-space:nowrap}
+@media (max-width:1240px){.nav-links{display:none}.nav .estado{margin-left:auto}}
 @media (max-width:520px){.nav .btn{display:none}.logo{font-size:22px}}
 
 /* ---------- Hero ---------- */
@@ -251,11 +251,26 @@ textarea{resize:vertical;min-height:84px}
 .horario td:last-child{text-align:right;font-weight:600}
 .horario tr.hoy-fila td{font-weight:700}
 .horario tr.hoy-fila td:first-child::after{content:"hoy";margin-left:10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:var(--pastis);padding:3px 7px;border-radius:5px}
-.mapa{background:var(--anis-2);border-radius:var(--radio);padding:12px}
-.mapa svg{display:block;width:100%;height:auto}
-.mapa figcaption{font-size:13px;color:var(--musgo);padding:8px 6px 2px}
+.info-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,48px);align-items:start}
+@media (max-width:900px){.info-grid{grid-template-columns:1fr}}
+.horario-card{background:#F7F8F1;border:1.5px solid var(--linea-papel);border-radius:18px;padding:clamp(20px,3vw,30px);display:grid;gap:20px}
+.estado-grande{display:flex;align-items:center;gap:14px;font-size:clamp(19px,2vw,22px);font-weight:700;line-height:1.3}
+.estado-grande .punto{flex:none;width:12px;height:12px;border-radius:50%;background:#3E9B52;animation:latir 2.2s ease-out infinite}
+.estado-grande.cerrado .punto{background:#C0603F;animation:none}
+@keyframes latir{0%{box-shadow:0 0 0 0 rgba(62,155,82,.45)}100%{box-shadow:0 0 0 12px rgba(62,155,82,0)}}
+.mapa{border-radius:18px;overflow:hidden;border:1.5px solid var(--linea-papel);background:var(--anis-2);display:grid;margin:0}
+.mapa-marco{position:relative;height:320px;transition:height .6s cubic-bezier(.2,.7,.2,1)}
+.mapa.abierto .mapa-marco{height:min(72vh,640px)}
+.mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.mapa-carga{position:absolute;inset:0;display:grid;place-items:center;color:var(--musgo);font-size:14px;text-align:center;padding:20px}
+.mapa-barra{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding:14px 16px;background:#F7F8F1;border-top:1.5px solid var(--linea-papel)}
+.mapa-barra p{font-size:14px;color:var(--musgo)}
+.mapa-botones{display:flex;gap:8px;flex-wrap:wrap}
+.btn-peq{padding:10px 16px;font-size:14px}
+.btn-borde{border-color:var(--tinta);color:var(--tinta);background:transparent}
+.btn-borde:hover{background:var(--tinta);color:var(--anis)}
 .llegar{display:grid;gap:10px;margin:0;padding:0;list-style:none}
-.llegar li{display:grid;grid-template-columns:90px 1fr;gap:12px;font-size:15px}
+.llegar li{display:grid;grid-template-columns:104px 1fr;gap:12px;font-size:15px}
 .llegar b{font-weight:700}
 
 /* Footer */
@@ -270,7 +285,102 @@ footer p{color:var(--suave);font-size:14px;max-width:52ch}
   .barra-movil{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(16,33,31,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--linea)}
   .barra-movil .btn{padding:14px 10px;font-size:15px}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+/* ---------- Fluidez ---------- */
+.progreso{position:fixed;top:0;left:0;right:0;height:3px;background:var(--pastis);transform-origin:0 50%;transform:scaleX(0);z-index:60;pointer-events:none}
+.nav{transition:box-shadow .3s,background .3s}
+.nav.con-sombra{box-shadow:0 12px 30px rgba(0,0,0,.28);background:rgba(16,33,31,.94)}
+.nav-links a{position:relative;transition:color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--pastis);transform:scaleX(0);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.nav-links a.activo{color:var(--claro)}
+.nav-links a.activo::after,.nav-links a:hover::after{transform:scaleX(1)}
+@keyframes subir{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.hero-inner>*{animation:subir 1s cubic-bezier(.2,.7,.2,1) both}
+.hero-inner>:nth-child(2){animation-delay:.12s}
+.hero-inner>:nth-child(3){animation-delay:.24s}
+.hero-inner>:nth-child(4){animation-delay:.36s}
+.hero-inner>:nth-child(5){animation-delay:.5s}
+.revela{transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.revela.pre{opacity:0;transform:translateY(30px)}
+.cinta{overflow:hidden;border-block:1px solid var(--linea);padding-block:20px;background:var(--noche)}
+.cinta-pista{display:flex;width:max-content;animation:desliza 45s linear infinite}
+.cinta:hover .cinta-pista{animation-play-state:paused}
+.cinta span{font-family:var(--display);font-size:clamp(26px,3.4vw,42px);white-space:nowrap;color:var(--claro);display:inline-flex;align-items:center;gap:30px;padding-right:30px}
+.cinta span:nth-child(even){color:var(--pastis)}
+.cinta svg{width:22px;height:22px;color:var(--pastis)}
+@keyframes desliza{to{transform:translateX(-50%)}}
+
+/* Buscador de la carta */
+.buscador{position:relative;margin-bottom:14px}
+.buscador input{width:100%;font:500 17px/1.2 var(--body);padding:17px 52px;border-radius:999px;border:1.5px solid var(--linea-papel);background:#F7F8F1;color:var(--tinta);transition:border-color .2s,box-shadow .25s;-webkit-appearance:none;appearance:none}
+.buscador input::-webkit-search-cancel-button{display:none}
+.buscador input::placeholder{color:#7D8B80}
+.buscador input:focus{outline:none;border-color:var(--tinta);box-shadow:0 0 0 5px rgba(239,203,85,.5)}
+.buscador .lupa{position:absolute;left:19px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--musgo);pointer-events:none}
+.buscador .limpiar{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:var(--anis-2);color:var(--tinta);font-size:18px;cursor:pointer}
+.sugerencias{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:var(--musgo);margin-bottom:22px}
+.sugerencias button{font:600 13px var(--body);padding:6px 12px;border-radius:999px;border:1px dashed rgba(19,35,31,.35);background:transparent;color:var(--tinta);cursor:pointer;transition:background .2s,border-color .2s}
+.sugerencias button:hover{background:var(--anis-2);border-style:solid}
+.resultados-info{font-size:15px;color:var(--musgo);margin:-8px 0 20px}
+.resultados-info b{color:var(--tinta)}
+.plato{animation:subir .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 45ms)}
+.plato mark{background:rgba(239,203,85,.65);color:inherit;border-radius:3px;padding:0 2px}
+.plato .seccion{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pastis-deep)}
+.anadir{justify-self:start;margin-top:6px;font:600 14px/1 var(--body);display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--tinta);background:transparent;color:var(--tinta);cursor:pointer;transition:background .2s,color .2s,transform .15s}
+.anadir:hover{background:var(--tinta);color:var(--anis)}
+.anadir:active{transform:scale(.95)}
+.anadir.elegido{background:var(--tinta);color:var(--anis)}
+.vacio{grid-column:1/-1;padding:34px 24px;border:1.5px dashed var(--linea-papel);border-radius:var(--radio);text-align:center;color:var(--musgo);display:grid;gap:6px}
+.vacio b{font-family:var(--display);font-weight:400;font-size:24px;color:var(--tinta)}
+.lateral{display:grid;gap:22px}
+.seleccion{background:#F7F8F1;border:1.5px solid var(--linea-papel);border-radius:var(--radio);padding:24px;display:grid;gap:14px;transition:box-shadow .4s,border-color .4s}
+.seleccion.pulso{border-color:var(--pastis);box-shadow:0 0 0 5px rgba(239,203,85,.4)}
+.seleccion h3{font-size:26px}
+.sel-lista{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.sel-lista li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;font-size:15px;animation:subir .35s both}
+.sel-lista .precio{font-weight:700;font-variant-numeric:tabular-nums;min-width:62px;text-align:right}
+.mini{display:flex;align-items:center;border:1px solid var(--linea-papel);border-radius:999px}
+.mini button{width:30px;height:30px;border:0;background:none;cursor:pointer;font-size:16px;color:var(--tinta);border-radius:50%}
+.mini button:hover{background:var(--anis-2)}
+.mini span{min-width:2ch;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+.sel-total{display:flex;justify-content:space-between;border-top:1px dashed var(--linea-papel);padding-top:12px;font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
+.sel-vacia{font-size:15px;color:var(--musgo)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,24px);opacity:0;background:var(--tinta);color:var(--anis);padding:10px 10px 10px 20px;border-radius:999px;display:flex;gap:14px;align-items:center;font-size:15px;font-weight:600;z-index:70;transition:opacity .3s,transform .35s cubic-bezier(.2,.7,.2,1);pointer-events:none;box-shadow:0 14px 34px rgba(0,0,0,.35);max-width:calc(100% - 32px)}
+.toast.ver{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toast button{flex:none;font:700 14px var(--body);background:var(--pastis);color:var(--tinta);border:0;border-radius:999px;padding:9px 14px;cursor:pointer}
+@media (max-width:700px){.toast{bottom:calc(88px + env(safe-area-inset-bottom,0px))}}
+
+/* Reseñas */
+.resenas-top{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.resenas-top .cabecera{margin-bottom:0}
+.filtros{display:flex;gap:8px;flex-wrap:wrap}
+.filtro{font:600 14px/1 var(--body);padding:10px 15px;border-radius:999px;border:1.5px solid var(--linea);background:transparent;color:var(--claro);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.filtro:hover{border-color:rgba(233,236,221,.45)}
+.filtro[aria-pressed="true"]{background:var(--pastis);color:var(--tinta);border-color:var(--pastis)}
+.carrusel{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(280px,calc((100% - 40px)/3));gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:14px;scrollbar-width:thin;scrollbar-color:var(--noche-3) transparent;list-style:none;margin:0;padding-left:0}
+@media (max-width:760px){.carrusel{grid-auto-columns:86%}}
+.resena{scroll-snap-align:start;background:var(--noche-2);border:1px solid var(--linea);border-radius:18px;padding:26px;display:grid;gap:18px;align-content:space-between;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .3s;animation:subir .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 60ms)}
+.resena:hover{transform:translateY(-5px);border-color:rgba(239,203,85,.5)}
+.estrellas{display:flex;gap:3px}
+.estrellas svg{width:17px;height:17px}
+.resena blockquote{margin:0;font-family:var(--display);font-size:21px;line-height:1.38}
+.autor{display:flex;gap:12px;align-items:center}
+.avatar{flex:none;width:42px;height:42px;border-radius:50%;background:var(--noche-3);display:grid;place-items:center;font-weight:700;color:var(--pastis)}
+.autor b{display:block;font-size:15px}
+.autor small{display:block;color:var(--suave);font-size:13px}
+.resenas-pie{margin-top:20px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.resenas-pie p{font-size:14px;color:var(--suave);max-width:52ch}
+.flechas{display:flex;gap:8px}
+.flecha{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--linea);background:transparent;color:var(--claro);cursor:pointer;display:grid;place-items:center;transition:border-color .2s,color .2s}
+.flecha:hover{border-color:var(--pastis);color:var(--pastis)}
+.flecha svg{width:18px;height:18px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}*{transition:none!important}
+  .hero-inner>*,.plato,.resena,.cinta-pista,.sel-lista li,.estado-grande .punto{animation:none!important}
+  .revela.pre{opacity:1;transform:none}
+  .carrusel{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
@@ -290,8 +400,11 @@ footer p{color:var(--suave);font-size:14px;max-width:52ch}
       </g>
       <circle cx="16" cy="16" r="3" fill="#10211F"/>
     </symbol>
+    <symbol id="estrella" viewBox="0 0 20 20"><path fill="currentColor" d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z"/></symbol>
+    <symbol id="lupa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></g></symbol>
   </defs>
 </svg>
+<div class="progreso" id="progreso" aria-hidden="true"></div>
 
 <header class="nav">
   <div class="wrap">
@@ -301,7 +414,8 @@ footer p{color:var(--suave);font-size:14px;max-width:52ch}
       <a href="#carta">Carta</a>
       <a href="#plan">Planes en grupo</a>
       <a href="#agenda">Agenda</a>
-      <a href="#visitanos">Cómo llegar</a>
+      <a href="#resenas">Reseñas</a>
+      <a href="#visitanos">Horario</a>
     </nav>
     <span class="estado" id="estado"><span class="punto"></span><span id="estado-txt">Abierto</span></span>
     <a class="btn btn-pastis" href="#reservar">Reservar mesa</a>
@@ -365,6 +479,13 @@ footer p{color:var(--suave);font-size:14px;max-width:52ch}
     </div>
   </section>
 
+  <div class="cinta" aria-hidden="true">
+    <div class="cinta-pista">
+      <span>Pastis al atardecer<svg><use href="#anis"/></svg></span><span>Cócteles de autor<svg><use href="#anis"/></svg></span><span>Crêpes y bistró<svg><use href="#anis"/></svg></span><span>DJ junto al Ebro<svg><use href="#anis"/></svg></span><span>Chanson française<svg><use href="#anis"/></svg></span><span>Brunch de domingo<svg><use href="#anis"/></svg></span>
+      <span>Pastis al atardecer<svg><use href="#anis"/></svg></span><span>Cócteles de autor<svg><use href="#anis"/></svg></span><span>Crêpes y bistró<svg><use href="#anis"/></svg></span><span>DJ junto al Ebro<svg><use href="#anis"/></svg></span><span>Chanson française<svg><use href="#anis"/></svg></span><span>Brunch de domingo<svg><use href="#anis"/></svg></span>
+    </div>
+  </div>
+
   <div class="toldo sobre-papel" aria-hidden="true"></div>
 
   <section id="carta" class="papel" style="padding-top:clamp(48px,6vw,80px)">
@@ -376,9 +497,29 @@ footer p{color:var(--suave);font-size:14px;max-width:52ch}
       </div>
       <div class="carta-grid">
         <div>
+          <div class="buscador" role="search">
+            <svg class="lupa" aria-hidden="true"><use href="#lupa"/></svg>
+            <label for="buscar" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Buscar en la carta</label>
+            <input type="search" id="buscar" placeholder="Busca un plato, ingrediente o cóctel…" autocomplete="off">
+            <button class="limpiar" type="button" id="limpiar" aria-label="Borrar búsqueda" hidden>×</button>
+          </div>
+          <div class="sugerencias" id="sugerencias">
+            <span>Prueba:</span>
+            <button type="button">brie</button><button type="button">veggie</button><button type="button">ginebra</button><button type="button">crêpe</button><button type="button">para compartir</button><button type="button">dulce</button>
+          </div>
           <div class="tabs" role="tablist" aria-label="Secciones de la carta" id="tabs"></div>
-          <ul class="platos" id="platos" role="tabpanel" aria-live="polite"></ul>
+          <p class="resultados-info" id="resultados-info" aria-live="polite" hidden></p>
+          <ul class="platos" id="platos" role="tabpanel"></ul>
           <p class="nota-precios">Precios de ejemplo para la demo. IVA incluido. Pregúntanos por alérgenos.</p>
+        </div>
+        <div class="lateral">
+        <div class="seleccion" id="seleccion" aria-live="polite">
+          <p class="eyebrow">Tu selección</p>
+          <h3>Lo que te apetece</h3>
+          <p class="sel-vacia" id="sel-vacia">Pulsa «Añadir» en los platos que quieras. Te los guardamos con la reserva para tenerlos listos cuando llegues.</p>
+          <ul class="sel-lista" id="sel-lista"></ul>
+          <div class="sel-total" id="sel-total" hidden><span>Total aproximado</span><span id="sel-suma">0 €</span></div>
+          <button class="btn btn-tinta" type="button" id="sel-reservar" hidden>Añadir a mi reserva</button>
         </div>
         <aside class="pizarra" aria-label="Sugerencias de la pizarra">
           <h3>Hoy en la pizarra</h3>
@@ -400,6 +541,7 @@ footer p{color:var(--suave);font-size:14px;max-width:52ch}
             <span class="precio-tiza">18 €</span>
           </div>
         </aside>
+        </div>
       </div>
     </div>
   </section>
@@ -445,6 +587,26 @@ footer p{color:var(--suave);font-size:14px;max-width:52ch}
         <p>Directos, DJ y pequeños rituales. La programación de abajo es de ejemplo y se actualiza cada semana.</p>
       </div>
       <ol class="agenda" id="agenda-lista"></ol>
+    </div>
+  </section>
+
+  <section id="resenas">
+    <div class="wrap">
+      <div class="resenas-top">
+        <div class="cabecera">
+          <p class="eyebrow">Reseñas</p>
+          <h2>Lo que cuentan quienes ya han venido</h2>
+        </div>
+        <div class="filtros" id="filtros" aria-label="Filtrar reseñas"></div>
+      </div>
+      <ul class="carrusel" id="carrusel" aria-label="Reseñas de clientes"></ul>
+      <div class="resenas-pie">
+        <p>Reseñas de ejemplo para la demo. En la web final se muestran automáticamente las opiniones reales de Google.</p>
+        <div class="flechas">
+          <button class="flecha" type="button" id="res-ant" aria-label="Reseñas anteriores"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.5 4L6.5 10l6 6"/></svg></button>
+          <button class="flecha" type="button" id="res-sig" aria-label="Más reseñas"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.5 4l6 6-6 6"/></svg></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -533,6 +695,7 @@ footer p{color:var(--suave);font-size:14px;max-width:52ch}
             <div><dt>Personas</dt><dd id="t-personas">4</dd></div>
             <div><dt>Zona</dt><dd id="t-zona">Primera fila al río</dd></div>
             <div><dt>Ocasión</dt><dd id="t-ocasion">Quedada con amigos</dd></div>
+            <div><dt>Platos elegidos</dt><dd id="t-platos">Ninguno</dd></div>
           </dl>
           <p class="pie" id="t-sol">Ese día el sol se pone a las 20:00. Llegad un rato antes para verlo desde la mesa.</p>
         </aside>
@@ -571,60 +734,40 @@ footer p{color:var(--suave);font-size:14px;max-width:52ch}
   <section id="visitanos" class="papel">
     <div class="wrap">
       <div class="cabecera">
-        <p class="eyebrow">Cómo llegar</p>
+        <p class="eyebrow">Horario y ubicación</p>
         <h2>En la ribera, a un paseo del centro</h2>
+        <p>Paseo de la Ribera, s/n, junto al Puente de Hierro · 50014 Zaragoza</p>
       </div>
-      <div class="visita">
-        <div class="datos">
-          <p class="direccion">Paseo de la Ribera, s/n<br>Junto al Puente de Hierro<br>50014 Zaragoza</p>
+      <div class="info-grid">
+        <div class="horario-card">
+          <div class="estado-grande" id="estado-grande"><span class="punto"></span><span id="estado-grande-txt">Abierto ahora</span></div>
+          <table class="horario" aria-label="Horario semanal">
+            <tbody id="horario"></tbody>
+          </table>
           <div class="tel">
             <span id="telefono">976 95 06 94</span>
             <button class="copiar" type="button" id="copiar">Copiar teléfono</button>
           </div>
-          <div><a class="btn btn-tinta" href="https://www.google.com/maps/search/?api=1&amp;query=Le+Pastis+Paseo+de+la+Ribera+Zaragoza" target="_blank" rel="noopener">Abrir en Google Maps</a></div>
-          <table class="horario" aria-label="Horario">
-            <tbody id="horario"></tbody>
-          </table>
-        </div>
-        <div class="datos">
-          <figure class="mapa" style="margin:0">
-            <svg viewBox="0 0 420 250" role="img" aria-label="Esquema: Le Pastis está en la orilla norte del Ebro, junto al Puente de Hierro, frente al centro y al Pilar.">
-              <rect width="420" height="250" fill="#E1E5D3"/>
-              <path d="M0 108 C 70 96, 130 122, 210 110 S 350 96, 420 112 L 420 150 C 350 136, 290 156, 210 148 S 70 134, 0 146 Z" fill="#9FC0B8"/>
-              <g fill="#13231F">
-                <rect x="96" y="96" width="7" height="60" rx="2"/>
-                <rect x="206" y="100" width="7" height="56" rx="2"/>
-                <rect x="296" y="96" width="9" height="62" rx="2"/>
-              </g>
-              <g font-family="Figtree, sans-serif" font-size="11" fill="#56685C">
-                <text x="99" y="178" text-anchor="middle">P. Santiago</text>
-                <text x="209" y="178" text-anchor="middle">P. de Piedra</text>
-                <text x="300" y="182" text-anchor="middle" font-weight="700" fill="#13231F">P. de Hierro</text>
-                <text x="210" y="134" text-anchor="middle" font-style="italic" fill="#2E5A52">Ebro</text>
-                <text x="30" y="40">Arrabal · orilla norte</text>
-                <text x="30" y="232">Centro · orilla sur</text>
-              </g>
-              <g transform="translate(154 190)" fill="#13231F">
-                <rect x="-22" y="0" width="44" height="12"/>
-                <rect x="-24" y="-18" width="5" height="30"/><rect x="19" y="-18" width="5" height="30"/>
-                <path d="M-7 0 a7 7 0 0 1 14 0z"/>
-                <text x="0" y="28" text-anchor="middle" font-family="Figtree, sans-serif" font-size="11" fill="#56685C">Basílica del Pilar</text>
-              </g>
-              <g transform="translate(332 72)">
-                <circle r="20" fill="#EFCB55" opacity=".35"/>
-                <path d="M0 14 C -10 2, -11 -4, -11 -8 a11 11 0 0 1 22 0 c0 4 -1 10 -11 22z" fill="#13231F"/>
-                <circle cy="-8" r="4.5" fill="#EFCB55"/>
-                <text x="16" y="-12" font-family="Gloock, Georgia, serif" font-size="17" fill="#13231F">Le Pastis</text>
-              </g>
-            </svg>
-            <figcaption>Esquema orientativo, no a escala.</figcaption>
-          </figure>
           <ul class="llegar">
             <li><b>A pie</b><span>Desde el Pilar, cruza por el Puente de Piedra o el de Hierro y baja al paseo de la ribera.</span></li>
-            <li><b>En bici</b><span>El carril de la ribera del Ebro te deja en la puerta. Hay sitio para dejarla cerca.</span></li>
-            <li><b>Temporada</b><span>Terraza al aire libre: abrimos con el buen tiempo. Consulta el horario antes de venir.</span></li>
+            <li><b>En bici</b><span>El carril de la ribera del Ebro te deja en la puerta.</span></li>
+            <li><b>Temporada</b><span>Terraza al aire libre: abrimos con el buen tiempo.</span></li>
           </ul>
         </div>
+        <figure class="mapa" id="mapa">
+          <div class="mapa-marco">
+            <div class="mapa-carga">Cargando mapa de Google…</div>
+            <iframe title="Mapa de Google con la ubicación de Le Pastis" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+              src="https://maps.google.com/maps?q=Le%20Pastis%2C%20Paseo%20de%20la%20Ribera%2C%2050014%20Zaragoza&amp;z=16&amp;hl=es&amp;output=embed"></iframe>
+          </div>
+          <figcaption class="mapa-barra">
+            <p>Junto al Puente de Hierro, orilla del Arrabal</p>
+            <div class="mapa-botones">
+              <button class="btn btn-borde btn-peq" type="button" id="mapa-ampliar" aria-expanded="false" aria-controls="mapa">Ampliar mapa</button>
+              <a class="btn btn-tinta btn-peq" href="https://www.google.com/maps/dir/?api=1&amp;destination=Le+Pastis+Paseo+de+la+Ribera+Zaragoza" target="_blank" rel="noopener">Cómo llegar</a>
+            </div>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -637,6 +780,8 @@ footer p{color:var(--suave);font-size:14px;max-width:52ch}
     <span class="demo-tag">Demo de propuesta web · carta, precios y agenda de ejemplo</span>
   </div>
 </footer>
+
+<div class="toast" id="toast" role="status"><span id="toast-txt"></span><button type="button" id="toast-ver">Ver selección</button></div>
 
 <div class="barra-movil">
   <a class="btn btn-linea" href="#visitanos">Cómo llegar</a>
@@ -692,6 +837,8 @@ function pintarEstado(){
   else { txt = 'Abrimos mañana a las ' + hhmm(manana[0]); }
   $('estado').classList.toggle('cerrado', !abierto);
   $('estado-txt').textContent = txt;
+  $('estado-grande').classList.toggle('cerrado', !abierto);
+  $('estado-grande-txt').textContent = txt.replace('Abierto · ', 'Abierto ahora · ');
 }
 pintarEstado();
 setInterval(pintarEstado, 60000);
@@ -700,59 +847,148 @@ $('hoy-horario').textContent = hhmm(HORARIO[ahora.wd][0]) + ' – ' + hhmm(HORAR
 $('hoy-sol').textContent = solHoy.txt + ' h';
 $('momento-sol').textContent = 'hoy, a las ' + solHoy.txt;
 
-/* ---------- Carta ---------- */
+/* ---------- Carta: buscador y selección ---------- */
 var CARTA = [
   {id:'compartir', nombre:'Para compartir', platos:[
-    {n:'Tabla de quesos franceses', d:'Brie, comté, roquefort y chèvre con membrillo, nueces y pan de masa madre.', p:15, t:'fav'},
-    {n:'Patatas Le Pastis', d:'Patata confitada y crujiente con alioli de mostaza y cebollino.', p:7.5},
+    {n:'Tabla de quesos franceses', d:'Brie, comté, roquefort y chèvre con membrillo, nueces y pan de masa madre.', p:15, t:'fav', k:'queso'},
+    {n:'Patatas Le Pastis', d:'Patata confitada y crujiente con alioli de mostaza y cebollino.', p:7.5, k:'bravas'},
     {n:'Croquetas de jamón', d:'Seis unidades, cremosas por dentro, como deben ser.', p:9},
-    {n:'Hummus de la casa', d:'Con crudités, aceite de pimentón y pan de pita tostado.', p:8.5, t:'veg'},
-    {n:'Tataki de atún', d:'Sésamo, soja cítrica y encurtidos de la casa.', p:16},
-    {n:'Bandeja de sushi', d:'Dieciséis piezas variadas, ideal para el centro de la mesa.', p:19}
+    {n:'Hummus de la casa', d:'Con crudités, aceite de pimentón y pan de pita tostado.', p:8.5, t:'veg', k:'vegano garbanzo'},
+    {n:'Tataki de atún', d:'Sésamo, soja cítrica y encurtidos de la casa.', p:16, k:'pescado'},
+    {n:'Bandeja de sushi', d:'Dieciséis piezas variadas, ideal para el centro de la mesa.', p:19, k:'pescado japones'}
   ]},
   {id:'bistro', nombre:'Burgers y bistró', platos:[
-    {n:'Burger Le Bistro', d:'250 g de vaca, queso brie, rúcula, cebolla roja y alioli de mostaza.', p:14.5, t:'fav'},
-    {n:'Croque monsieur', d:'Jamón cocido, bechamel y gruyère gratinado. Con ensalada.', p:10},
-    {n:'Croque madame', d:'El de siempre, con huevo a la plancha encima.', p:11},
-    {n:'Burger de garbanzo', d:'Con queso de cabra, cebolla caramelizada y brotes.', p:13, t:'veg'},
-    {n:'Steak tartar', d:'Cortado a cuchillo, con patatas y yema curada.', p:18},
-    {n:'Ensalada niçoise', d:'Atún, huevo, judía verde, aceitunas negras y patata.', p:12.5}
+    {n:'Burger Le Bistro', d:'250 g de vaca, queso brie, rúcula, cebolla roja y alioli de mostaza.', p:14.5, t:'fav', k:'hamburguesa carne'},
+    {n:'Croque monsieur', d:'Jamón cocido, bechamel y gruyère gratinado. Con ensalada.', p:10, k:'sandwich queso'},
+    {n:'Croque madame', d:'El de siempre, con huevo a la plancha encima.', p:11, k:'sandwich queso jamon'},
+    {n:'Burger de garbanzo', d:'Con queso de cabra, cebolla caramelizada y brotes.', p:13, t:'veg', k:'hamburguesa'},
+    {n:'Steak tartar', d:'Cortado a cuchillo, con patatas y yema curada.', p:18, k:'carne ternera'},
+    {n:'Ensalada niçoise', d:'Atún, huevo, judía verde, aceitunas negras y patata.', p:12.5, k:'pescado'}
   ]},
   {id:'crepes', nombre:'Crêpes', platos:[
-    {n:'Crêpe complète', d:'Jamón, queso emmental y huevo. La clásica de Bretaña.', p:9},
-    {n:'Crêpe de chèvre y miel', d:'Queso de cabra, miel, nueces y rúcula.', p:10, t:'veg'},
-    {n:'Crêpe Suzette', d:'Mantequilla, naranja y Grand Marnier flambeado.', p:7.5, t:'fav'},
-    {n:'Crêpe de chocolate y plátano', d:'Para compartir… o no.', p:6.5}
+    {n:'Crêpe complète', d:'Jamón, queso emmental y huevo. La clásica de Bretaña.', p:9, k:'crepe salada'},
+    {n:'Crêpe de chèvre y miel', d:'Queso de cabra, miel, nueces y rúcula.', p:10, t:'veg', k:'crepe salada'},
+    {n:'Crêpe Suzette', d:'Mantequilla, naranja y Grand Marnier flambeado.', p:7.5, t:'fav', k:'crepe dulce postre'},
+    {n:'Crêpe de chocolate y plátano', d:'Para compartir… o no.', p:6.5, k:'crepe dulce postre nutella'}
   ]},
   {id:'cocteles', nombre:'Cócteles y pastis', platos:[
-    {n:'Pastis de la casa', d:'Anís, agua fresca y hielo. Se vuelve lechoso al mezclar: es el famoso «louche».', p:4.5, t:'fav'},
-    {n:'Gin Fizz', d:'Ginebra, limón, azúcar y soda. Fresco y ligero.', p:9},
-    {n:'Negroni', d:'Ginebra, vermú rojo y Campari, a partes iguales.', p:9},
-    {n:'Mojito', d:'Ron blanco, hierbabuena, lima y soda.', p:8.5},
-    {n:'Cosmopolitan', d:'Vodka, triple seco, arándano y lima.', p:9},
-    {n:'Bloody Mary', d:'El de los domingos de brunch, bien especiado.', p:9},
-    {n:'Spritz del Ebro', d:'Aperitivo, cava y un toque de pomelo.', p:8},
-    {n:'Vermú de grifo', d:'Con naranja y aceituna.', p:3.5}
+    {n:'Pastis de la casa', d:'Anís, agua fresca y hielo. Se vuelve lechoso al mezclar: es el famoso «louche».', p:4.5, t:'fav', k:'bebida aperitivo'},
+    {n:'Gin Fizz', d:'Ginebra, limón, azúcar y soda. Fresco y ligero.', p:9, k:'bebida coctel gin'},
+    {n:'Negroni', d:'Ginebra, vermú rojo y Campari, a partes iguales.', p:9, k:'bebida coctel gin'},
+    {n:'Mojito', d:'Ron blanco, hierbabuena, lima y soda.', p:8.5, k:'bebida coctel'},
+    {n:'Cosmopolitan', d:'Vodka, triple seco, arándano y lima.', p:9, k:'bebida coctel'},
+    {n:'Bloody Mary', d:'El de los domingos de brunch, bien especiado.', p:9, k:'bebida coctel vodka'},
+    {n:'Spritz del Ebro', d:'Aperitivo, cava y un toque de pomelo.', p:8, k:'bebida coctel'},
+    {n:'Vermú de grifo', d:'Con naranja y aceituna.', p:3.5, k:'bebida aperitivo vermut'}
   ]}
 ];
-var tabActiva = 'compartir';
-function pintarTabs(){
-  $('tabs').innerHTML = CARTA.map(function(s){
-    return '<button class="tab" role="tab" type="button" id="tab-'+s.id+'" aria-selected="'+(s.id===tabActiva)+'" data-id="'+s.id+'">'+s.nombre+'</button>';
-  }).join('');
-  var s = CARTA.filter(function(x){ return x.id === tabActiva; })[0];
-  $('platos').setAttribute('aria-labelledby','tab-'+s.id);
-  $('platos').innerHTML = s.platos.map(function(p){
-    var etq = p.t === 'fav' ? '<span class="etq fav">Favorito</span>' : p.t === 'veg' ? '<span class="etq veg">Veggie</span>' : '';
-    return '<li class="plato"><div class="fila"><span class="nombre">'+p.n+etq+'</span><span class="puntos"></span><span class="precio">'+euro(p.p)+'</span></div><p class="desc">'+p.d+'</p></li>';
-  }).join('');
+function norm(t){ return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
+function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+var PLATOS = [], PORID = {};
+CARTA.forEach(function(s){ s.platos.forEach(function(p, i){
+  p.id = s.id + '-' + i; p.sec = s.nombre;
+  p.busca = norm([p.n, p.d, s.nombre, p.k || '', p.t === 'veg' ? 'veggie vegetariano' : '', p.t === 'fav' ? 'favorito recomendado' : ''].join(' '));
+  PLATOS.push(p); PORID[p.id] = p;
+}); });
+function resaltar(texto, terms){
+  if (!terms.length) return esc(texto);
+  var n = norm(texto), rangos = [];
+  terms.forEach(function(t){ var i = n.indexOf(t); while (i >= 0){ rangos.push([i, i + t.length]); i = n.indexOf(t, i + t.length); } });
+  if (!rangos.length || n.length !== texto.length) return esc(texto);
+  rangos.sort(function(a,b){ return a[0]-b[0]; });
+  var out = '', pos = 0;
+  rangos.forEach(function(r){ if (r[0] < pos) r[0] = pos; if (r[1] <= pos) return; out += esc(texto.slice(pos, r[0])) + '<mark>' + esc(texto.slice(r[0], r[1])) + '</mark>'; pos = r[1]; });
+  return out + esc(texto.slice(pos));
+}
+var seleccion = {}, tabActiva = 'compartir', consulta = '';
+try { seleccion = JSON.parse(localStorage.getItem('lepastis-seleccion')) || {}; } catch(_){ seleccion = {}; }
+Object.keys(seleccion).forEach(function(id){ if (!PORID[id]) delete seleccion[id]; });
+function textoBoton(id){ var c = seleccion[id] || 0; return c ? '✓ Añadido' + (c > 1 ? ' ×' + c : '') : '+ Añadir'; }
+function htmlPlato(p, i, terms){
+  var etq = p.t === 'fav' ? '<span class="etq fav">Favorito</span>' : p.t === 'veg' ? '<span class="etq veg">Veggie</span>' : '';
+  return '<li class="plato" style="--i:' + i + '">' + (terms.length ? '<span class="seccion">' + esc(p.sec) + '</span>' : '') +
+    '<div class="fila"><span class="nombre">' + resaltar(p.n, terms) + etq + '</span><span class="puntos"></span><span class="precio">' + euro(p.p) + '</span></div>' +
+    '<p class="desc">' + resaltar(p.d, terms) + '</p>' +
+    '<button type="button" class="anadir' + (seleccion[p.id] ? ' elegido' : '') + '" data-id="' + p.id + '" aria-label="Añadir ' + esc(p.n) + ' a tu selección">' + textoBoton(p.id) + '</button></li>';
+}
+$('tabs').innerHTML = CARTA.map(function(s){
+  return '<button class="tab" role="tab" type="button" id="tab-' + s.id + '" data-id="' + s.id + '">' + s.nombre + '</button>';
+}).join('');
+function pintarCarta(){
+  var q = consulta.trim(), terms = norm(q).split(/\s+/).filter(Boolean), lista;
+  [].forEach.call(document.querySelectorAll('#tabs .tab'), function(b){ b.setAttribute('aria-selected', String(!terms.length && b.dataset.id === tabActiva)); });
+  if (terms.length){
+    lista = PLATOS.filter(function(p){ return terms.every(function(t){ return p.busca.indexOf(t) >= 0; }); });
+    $('resultados-info').hidden = !lista.length;
+    $('resultados-info').innerHTML = '<b>' + lista.length + '</b> ' + (lista.length === 1 ? 'plato' : 'platos') + ' para «' + esc(q) + '»';
+    $('platos').removeAttribute('aria-labelledby');
+  } else {
+    lista = CARTA.filter(function(s){ return s.id === tabActiva; })[0].platos;
+    $('resultados-info').hidden = true;
+    $('platos').setAttribute('aria-labelledby', 'tab-' + tabActiva);
+  }
+  $('platos').innerHTML = lista.length ? lista.map(function(p, i){ return htmlPlato(p, i, terms); }).join('')
+    : '<li class="vacio"><b>No encontramos «' + esc(q) + '»</b><span>Prueba con otra palabra: burger, queso, mojito, veggie…</span></li>';
+  $('limpiar').hidden = !consulta;
 }
 $('tabs').addEventListener('click', function(e){
   var b = e.target.closest('.tab'); if (!b) return;
-  tabActiva = b.dataset.id; pintarTabs();
-  $('tab-'+tabActiva).focus();
+  tabActiva = b.dataset.id; consulta = ''; $('buscar').value = '';
+  pintarCarta(); b.focus();
 });
-pintarTabs();
+var tBusca;
+$('buscar').addEventListener('input', function(){ var v = this.value; clearTimeout(tBusca); tBusca = setTimeout(function(){ consulta = v; pintarCarta(); }, 140); });
+$('buscar').addEventListener('keydown', function(e){ if (e.key === 'Escape'){ this.value = ''; consulta = ''; pintarCarta(); } });
+$('limpiar').addEventListener('click', function(){ $('buscar').value = ''; consulta = ''; pintarCarta(); $('buscar').focus(); });
+$('sugerencias').addEventListener('click', function(e){
+  var b = e.target.closest('button'); if (!b) return;
+  $('buscar').value = b.textContent; consulta = b.textContent; pintarCarta(); $('buscar').focus();
+});
+
+var tToast;
+function avisar(txt){
+  $('toast-txt').textContent = txt; $('toast').classList.add('ver');
+  clearTimeout(tToast); tToast = setTimeout(function(){ $('toast').classList.remove('ver'); }, 2800);
+}
+$('toast-ver').addEventListener('click', function(){
+  $('toast').classList.remove('ver');
+  $('seleccion').scrollIntoView({block:'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+});
+function guardarSeleccion(){ try { localStorage.setItem('lepastis-seleccion', JSON.stringify(seleccion)); } catch(_){} }
+function actualizarBotones(id){
+  [].forEach.call(document.querySelectorAll('.anadir[data-id="' + id + '"]'), function(b){ b.classList.toggle('elegido', !!seleccion[id]); b.textContent = textoBoton(id); });
+}
+function pintarSeleccion(){
+  var ids = Object.keys(seleccion), total = 0, uds = 0;
+  $('sel-lista').innerHTML = ids.map(function(id){
+    var p = PORID[id], c = seleccion[id]; total += p.p * c; uds += c;
+    return '<li><span>' + esc(p.n) + '</span><span class="mini"><button type="button" data-id="' + id + '" data-d="-1" aria-label="Quitar uno">−</button><span>' + c + '</span><button type="button" data-id="' + id + '" data-d="1" aria-label="Añadir otro">+</button></span><span class="precio">' + euro(p.p * c) + '</span></li>';
+  }).join('');
+  $('sel-vacia').hidden = !!ids.length; $('sel-total').hidden = !ids.length; $('sel-reservar').hidden = !ids.length;
+  $('sel-suma').textContent = euro(total);
+  $('t-platos').textContent = uds ? uds + (uds === 1 ? ' plato' : ' platos') + ' · ' + euro(total) : 'Ninguno';
+  guardarSeleccion();
+}
+function cambiar(id, d){
+  seleccion[id] = (seleccion[id] || 0) + d;
+  if (seleccion[id] <= 0) delete seleccion[id];
+  pintarSeleccion(); actualizarBotones(id);
+}
+$('platos').addEventListener('click', function(e){
+  var b = e.target.closest('.anadir'); if (!b) return;
+  cambiar(b.dataset.id, 1);
+  avisar('Añadido: ' + PORID[b.dataset.id].n);
+  var s = $('seleccion'); s.classList.add('pulso'); setTimeout(function(){ s.classList.remove('pulso'); }, 700);
+});
+$('sel-lista').addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) cambiar(b.dataset.id, +b.dataset.d); });
+$('sel-reservar').addEventListener('click', function(){
+  var linea = 'Nos gustaría tener preparado: ' + Object.keys(seleccion).map(function(id){ return seleccion[id] + '× ' + PORID[id].n; }).join(', ') + '.';
+  var notas = $('r-notas').value.split('\n').filter(function(l){ return l.indexOf('Nos gustaría tener preparado:') !== 0 && l.trim(); });
+  notas.push(linea); $('r-notas').value = notas.join('\n');
+  irAReservar();
+});
+pintarCarta();
+pintarSeleccion();
 
 /* ---------- Planes en grupo ---------- */
 var PLANES = [
@@ -1039,6 +1275,92 @@ preparar();
 if (estatica) dibujar(0); else requestAnimationFrame(bucle);
 if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }).observe(cv);
 var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ preparar(); dibujar(performance.now()); }, 120); });
+/* ---------- Reseñas (ejemplo para la demo) ---------- */
+var RESENAS = [
+  {n:'Marta L.', c:'Grupos', f:'Vino con siete amigos', e:5, t:'Éramos ocho un viernes y nos pusieron en primera fila al río. Ver el atardecer con un gin fizz en la mano no tiene precio.'},
+  {n:'Javier R.', c:'Comida', f:'Cena entre semana', e:5, t:'La burger Le Bistro con brie es de las mejores que he probado en Zaragoza. Y con las guirnaldas encendidas, el sitio es precioso.'},
+  {n:'Laura P.', c:'Grupos', f:'Celebró su cumpleaños', e:5, t:'Celebré aquí mi cumpleaños: tarta con velas, ronda de pastis y DJ. Todo el mundo salió encantado.'},
+  {n:'Dani M.', c:'Ambiente', f:'Afterwork', e:4, t:'Perfecto para desconectar después del trabajo. Buena música, y puedes hablar sin tener que gritar.'},
+  {n:'Sophie D.', c:'Cócteles', f:'Fin de semana', e:5, t:'El negroni, clavado. Y probad el pastis como se toma en Francia, con agua fresca. Me sentí en Marsella.'},
+  {n:'Pablo y Ana', c:'Comida', f:'Brunch de domingo', e:5, t:'Brunch con crêpes y bloody mary al sol, con el Ebro delante. Ya tenemos plan fijo para los domingos.'},
+  {n:'Irene G.', c:'Grupos', f:'Despedida de soltera', e:5, t:'Nos organizaron todo para doce personas sin complicaciones. El personal, atentísimo toda la noche.'},
+  {n:'Carlos T.', c:'Ambiente', f:'Primera visita', e:5, t:'Las vistas del Pilar de noche con el puente iluminado… Un sitio con muchísimo encanto a dos pasos del centro.'},
+  {n:'Nerea S.', c:'Cócteles', f:'Sunset session', e:4, t:'El spritz del Ebro y la sesión del viernes al atardecer, un planazo. Hay que llegar pronto para coger mesa.'}
+];
+var filtroRes = 'Todas';
+$('filtros').innerHTML = ['Todas','Ambiente','Comida','Cócteles','Grupos'].map(function(f){
+  return '<button class="filtro" type="button" aria-pressed="' + (f === filtroRes) + '">' + f + '</button>';
+}).join('');
+function htmlEstrellas(n){
+  var h = '';
+  for (var i = 1; i <= 5; i++) h += '<svg style="color:' + (i <= n ? 'var(--pastis)' : 'var(--noche-3)') + '"><use href="#estrella"/></svg>';
+  return '<div class="estrellas" role="img" aria-label="' + n + ' de 5 estrellas">' + h + '</div>';
+}
+function pintarResenas(){
+  var lista = RESENAS.filter(function(r){ return filtroRes === 'Todas' || r.c === filtroRes; });
+  $('carrusel').innerHTML = lista.map(function(r, i){
+    return '<li class="resena" style="--i:' + i + '">' + htmlEstrellas(r.e) + '<blockquote>' + esc(r.t) + '</blockquote>' +
+      '<div class="autor"><span class="avatar" aria-hidden="true">' + esc(r.n.charAt(0)) + '</span><span><b>' + esc(r.n) + '</b><small>' + esc(r.f) + ' · ' + esc(r.c) + '</small></span></div></li>';
+  }).join('');
+  $('carrusel').scrollLeft = 0;
+}
+$('filtros').addEventListener('click', function(e){
+  var b = e.target.closest('.filtro'); if (!b) return;
+  filtroRes = b.textContent;
+  [].forEach.call(this.children, function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+  pintarResenas();
+});
+function moverResenas(dir){ var c = $('carrusel'); c.scrollBy({left: dir * c.clientWidth * 0.9, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}); }
+$('res-ant').addEventListener('click', function(){ moverResenas(-1); });
+$('res-sig').addEventListener('click', function(){ moverResenas(1); });
+pintarResenas();
+
+/* ---------- Mapa ampliable ---------- */
+$('mapa-ampliar').addEventListener('click', function(){
+  var abierto = $('mapa').classList.toggle('abierto');
+  this.setAttribute('aria-expanded', String(abierto));
+  this.textContent = abierto ? 'Reducir mapa' : 'Ampliar mapa';
+  if (abierto) setTimeout(function(){ $('mapa').scrollIntoView({block:'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}); }, 250);
+});
+
+/* ---------- Fluidez al hacer scroll ---------- */
+var movReducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var nav = document.querySelector('.nav'), barra = $('progreso'), heroTxt = document.querySelector('.hero-inner'), heroCv = $('escena');
+var pendiente = false;
+function alScroll(){
+  pendiente = false;
+  var y = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
+  barra.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
+  nav.classList.toggle('con-sombra', y > 12);
+  if (!movReducido && y < innerHeight * 1.2){
+    heroCv.style.transform = 'translateY(' + (y * 0.35) + 'px)';
+    heroTxt.style.transform = 'translateY(' + (y * 0.12) + 'px)';
+    heroTxt.style.opacity = Math.max(0, 1 - y / 700);
+  }
+}
+window.addEventListener('scroll', function(){ if (!pendiente){ pendiente = true; requestAnimationFrame(alScroll); } }, {passive:true});
+alScroll();
+
+if ('IntersectionObserver' in window){
+  var enlaces = {};
+  [].forEach.call(document.querySelectorAll('.nav-links a'), function(a){ enlaces[a.getAttribute('href').slice(1)] = a; });
+  var obsNav = new IntersectionObserver(function(ents){
+    ents.forEach(function(en){ if (en.isIntersecting){ Object.keys(enlaces).forEach(function(k){ enlaces[k].classList.toggle('activo', k === en.target.id); }); } });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(enlaces).forEach(function(k){ var sec = $(k); if (sec) obsNav.observe(sec); });
+
+  if (!movReducido){
+    var obsRev = new IntersectionObserver(function(ents){
+      ents.forEach(function(en){ if (en.isIntersecting){ en.target.classList.remove('pre'); obsRev.unobserve(en.target); } });
+    }, {rootMargin:'0px 0px -8% 0px'});
+    [].forEach.call(document.querySelectorAll('main .cabecera, .momento, .sellos, .carta-grid > *, .plan > *, .dia, .resenas-pie, .reserva > *, .evento, .eventos-cta, .info-grid > *'), function(el){
+      var hermanos = [].filter.call(el.parentNode.children, function(x){ return x.classList[0] === el.classList[0]; });
+      el.classList.add('revela');
+      el.style.transitionDelay = Math.min(4, hermanos.indexOf(el)) * 90 + 'ms';
+      if (el.getBoundingClientRect().top > innerHeight){ el.classList.add('pre'); obsRev.observe(el); }
+    });
+  }
+}
 })();
 </script>
 </body>
