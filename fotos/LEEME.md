@@ -4,12 +4,11 @@ Mientras esta carpeta no tenga fotos, la web muestra ilustraciones. Para usar fo
 
 | Archivo | Dónde sale | Qué foto poner |
 |---|---|---|
-| `terraza.jpg` | Galería (grande) y "La hora dorada" | La terraza al atardecer, con el río detrás |
-| `pastis.jpg` | Galería y "El primer pastis" | Vasos de pastis o cócteles en la mesa |
-| `guirnaldas.jpg` | Galería (vertical) y "Guirnaldas y música" | Las luces encendidas de noche |
-| `puente.jpg` | Galería | El Puente de Hierro o el río de noche |
-| `musica.jpg` | Galería (panorámica) | Un concierto o sesión de DJ |
-| `crepes.jpg` | Galería | Un plato de la carta |
-| `brunch.jpg` | Galería | Brunch o terraza de día |
+| `terraza.jpg` | Portada, galería (grande), "La hora dorada" y despedidas | La terraza al atardecer, con el río detrás |
+| `pastis.jpg` | Portada (Reseñas), galería, "El primer pastis" y afterwork | Vasos de pastis o cócteles en la mesa |
+| `guirnaldas.jpg` | Portada (Reservas), galería (vertical), "Noches bajo las luces" y cumpleaños | Las luces encendidas de noche |
+| `puente.jpg` | Portada (Horario y mapa) y galería | El Puente de Hierro o el río de noche |
+| `crepes.jpg` | Portada (Carta) y galería | Un plato de la carta |
+| `brunch.jpg` | Portada (Celebraciones) y galería | Brunch o terraza de día |
 
 Tamaño recomendado: unos 1600 px de ancho y menos de 400 KB cada una.
