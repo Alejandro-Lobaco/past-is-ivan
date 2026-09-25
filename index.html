@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Pastis Zaragoza</title>
+<meta name="description" content="Le Pastis: terraza con aire francés en el Paseo de la Ribera, junto al Puente de Hierro (Zaragoza). Cócteles, cocina de bistró y música al atardecer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --noche:#10211F;
+  --noche-2:#172E2B;
+  --noche-3:#203B37;
+  --pastis:#EFCB55;
+  --pastis-hover:#F6D974;
+  --pastis-deep:#8A6A0E;
+  --anis:#EDEFE2;
+  --anis-2:#E1E5D3;
+  --tinta:#13231F;
+  --musgo:#56685C;
+  --claro:#E9ECDD;
+  --suave:#A8B6A8;
+  --atardecer:#E58A5E;
+  --pizarra:#1B2A26;
+  --linea:rgba(233,236,221,.14);
+  --linea-papel:rgba(19,35,31,.16);
+  --display:"Gloock", "Georgia", "Times New Roman", serif;
+  --body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mano:"Caveat", "Comic Sans MS", cursive;
+  --gutter:clamp(16px, 4vw, 40px);
+  --radio:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--noche);color:var(--claro);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg,canvas{max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.05;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:var(--gutter)}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--pastis)}
+.papel .eyebrow{color:var(--pastis-deep)}
+.mano{font-family:var(--mano);font-weight:700}
+:focus-visible{outline:2px solid var(--pastis);outline-offset:3px;border-radius:6px}
+.papel :focus-visible{outline-color:var(--tinta)}
+[hidden]{display:none!important}
+
+/* ---------- Botones ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;justify-content:center;font:600 16px/1 var(--body);padding:15px 22px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;text-decoration:none;transition:background .2s,transform .2s,border-color .2s}
+.btn-pastis{background:var(--pastis);color:var(--tinta)}
+.btn-pastis:hover{background:var(--pastis-hover);transform:translateY(-1px)}
+.btn-linea{border-color:rgba(233,236,221,.4);color:var(--claro);background:rgba(16,33,31,.35)}
+.btn-linea:hover{border-color:var(--claro)}
+.btn-tinta{background:var(--tinta);color:var(--anis)}
+.btn-tinta:hover{background:#22382f}
+
+/* ---------- Navegación ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(16,33,31,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-size:25px;letter-spacing:.01em;color:var(--claro);white-space:nowrap}
+.logo svg{width:26px;height:26px;flex:none}
+.nav-links{display:flex;gap:22px;margin-left:auto}
+.nav-links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--suave)}
+.nav-links a:hover{color:var(--claro)}
+.estado{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(233,236,221,.08);white-space:nowrap}
+.estado .punto{width:8px;height:8px;border-radius:50%;background:#7FCB8E;box-shadow:0 0 0 4px rgba(127,203,142,.18)}
+.estado.cerrado .punto{background:#D9876A;box-shadow:0 0 0 4px rgba(217,135,106,.18)}
+.nav .btn{padding:11px 18px;font-size:15px}
+@media (max-width:900px){.nav-links{display:none}.nav .estado{margin-left:auto}}
+@media (max-width:520px){.nav .btn{display:none}.logo{font-size:22px}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:min(86vh,780px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
+.hero-inner{width:100%;padding-block:120px 36px}
+.hero h1{font-size:clamp(52px,9vw,112px);letter-spacing:-.01em;max-width:11ch}
+.hero h1 em{font-style:normal;color:var(--pastis)}
+.hero .lead{margin-top:20px;max-width:34em;font-size:clamp(17px,1.6vw,20px);color:#D9DECD}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hoy{margin-top:44px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--linea);max-width:880px}
+.hoy div{padding:16px 20px 0 0;display:grid;gap:2px}
+.hoy dt{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.hoy dd{margin:0;font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
+@media (max-width:640px){.hoy{grid-template-columns:1fr 1fr}.hoy div:last-child{grid-column:1/-1}}
+
+/* ---------- Toldo ---------- */
+.toldo{height:40px;background:
+  radial-gradient(circle at 18px 22px,var(--pastis) 17.5px,transparent 18.5px) 0 0/72px 40px repeat-x,
+  radial-gradient(circle at 54px 22px,var(--anis) 17.5px,transparent 18.5px) 0 0/72px 40px repeat-x,
+  linear-gradient(to bottom,transparent 22px,var(--noche) 22px),
+  repeating-linear-gradient(90deg,var(--pastis) 0 36px,var(--anis) 36px 72px);
+  position:relative;z-index:2}
+.toldo.sobre-papel{background:
+  radial-gradient(circle at 18px 22px,var(--pastis) 17.5px,transparent 18.5px) 0 0/72px 40px repeat-x,
+  radial-gradient(circle at 54px 22px,var(--anis-2) 17.5px,transparent 18.5px) 0 0/72px 40px repeat-x,
+  linear-gradient(to bottom,transparent 22px,var(--anis) 22px),
+  repeating-linear-gradient(90deg,var(--pastis) 0 36px,var(--anis-2) 36px 72px)}
+
+/* ---------- Secciones ---------- */
+section{padding-block:clamp(72px,9vw,120px)}
+.cabecera{display:grid;gap:14px;max-width:720px;margin-bottom:48px}
+.cabecera h2{font-size:clamp(38px,5.4vw,64px)}
+.cabecera p{color:var(--suave);font-size:18px;max-width:40em}
+.papel{background:var(--anis);color:var(--tinta)}
+.papel .cabecera p{color:var(--musgo)}
+
+/* Momentos */
+.momentos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px)}
+.momento{display:grid;gap:12px;align-content:start;padding-top:22px;border-top:1px solid var(--linea)}
+.momento .hora{font-family:var(--mano);font-size:30px;color:var(--pastis);line-height:1}
+.momento h3{font-size:28px}
+.momento p{color:var(--suave)}
+.momento svg{width:44px;height:44px}
+@media (max-width:820px){.momentos{grid-template-columns:1fr}}
+.sellos{display:flex;flex-wrap:wrap;gap:10px;margin-top:48px}
+.sello{font-size:14px;font-weight:600;padding:9px 14px;border:1px solid var(--linea);border-radius:999px;color:#D9DECD;display:inline-flex;gap:8px;align-items:center}
+.sello svg{width:15px;height:15px}
+
+/* Carta */
+.carta-grid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:clamp(28px,4vw,56px);align-items:start}
+@media (max-width:960px){.carta-grid{grid-template-columns:1fr}}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.tab{font:600 15px/1 var(--body);padding:11px 16px;border-radius:999px;border:1.5px solid var(--linea-papel);background:transparent;color:var(--tinta);cursor:pointer}
+.tab:hover{border-color:var(--tinta)}
+.tab[aria-selected="true"]{background:var(--tinta);color:var(--anis);border-color:var(--tinta)}
+.platos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 40px;list-style:none;margin:0;padding:0}
+@media (max-width:700px){.platos{grid-template-columns:1fr}}
+.plato{display:grid;gap:4px}
+.plato .fila{display:flex;align-items:baseline;gap:10px}
+.plato .nombre{font-family:var(--display);font-size:21px;line-height:1.2}
+.plato .puntos{flex:1;border-bottom:2px dotted var(--linea-papel);transform:translateY(-4px);min-width:20px}
+.plato .precio{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.plato .desc{color:var(--musgo);font-size:15px;line-height:1.5;max-width:40ch}
+.etq{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:5px;margin-left:8px;vertical-align:3px;font-family:var(--body)}
+.etq.fav{background:var(--pastis);color:var(--tinta)}
+.etq.veg{background:#CFE0C6;color:#264029}
+.nota-precios{margin-top:30px;font-size:14px;color:var(--musgo)}
+.pizarra{background:var(--pizarra);color:#EEF0E4;border-radius:10px;padding:30px 28px 32px;border:10px solid #6E5638;box-shadow:inset 0 0 40px rgba(0,0,0,.35);display:grid;gap:22px;font-family:var(--mano)}
+.pizarra h3{font-family:var(--mano);font-size:36px;font-weight:700;color:var(--pastis);line-height:1}
+.pizarra .bloque{display:grid;gap:2px;font-size:23px;line-height:1.25}
+.pizarra .bloque b{font-size:26px}
+.pizarra .bloque span{color:#C7CFBF}
+.pizarra .precio-tiza{font-size:28px;color:var(--pastis)}
+.pizarra hr{border:0;border-top:2px dashed rgba(238,240,228,.25);margin:0}
+
+/* Plan con amigos */
+.plan{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:900px){.plan{grid-template-columns:1fr}}
+.opciones{display:grid;gap:12px}
+.opcion{position:relative}
+.opcion input{position:absolute;opacity:0;pointer-events:none}
+.opcion label{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:18px 20px;border:1.5px solid var(--linea);border-radius:var(--radio);cursor:pointer;transition:border-color .2s,background .2s}
+.opcion label:hover{border-color:rgba(233,236,221,.4)}
+.opcion input:checked + label{border-color:var(--pastis);background:rgba(239,203,85,.07)}
+.opcion input:focus-visible + label{outline:2px solid var(--pastis);outline-offset:3px}
+.opcion .radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--suave)}
+.opcion input:checked + label .radio{border:6px solid var(--pastis)}
+.opcion strong{display:block;font-size:18px}
+.opcion small{color:var(--suave);font-size:14px}
+.opcion .pp{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.personas{margin-top:26px;display:grid;gap:10px}
+.personas label{font-weight:600}
+.personas .rango{display:flex;align-items:center;gap:16px}
+.personas input[type=range]{flex:1;accent-color:var(--pastis);height:28px}
+.personas output{font-family:var(--display);font-size:34px;min-width:2.2ch;text-align:right;font-variant-numeric:tabular-nums}
+.resumen-plan{background:var(--noche-2);border:1px solid var(--linea);border-radius:18px;padding:30px;display:grid;gap:18px}
+.resumen-plan h3{font-size:32px}
+.resumen-plan ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.resumen-plan li{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start}
+.resumen-plan li svg{width:16px;height:16px;margin-top:5px}
+.regalos{display:grid;gap:8px}
+.regalo{font-size:15px;font-weight:600;color:var(--pastis);display:flex;gap:8px;align-items:center}
+.cifras{display:flex;justify-content:space-between;align-items:end;gap:16px;border-top:1px solid var(--linea);padding-top:18px;flex-wrap:wrap}
+.cifras .grande{font-family:var(--display);font-size:46px;line-height:1;font-variant-numeric:tabular-nums}
+.cifras .peq{color:var(--suave);font-size:14px}
+
+/* Agenda */
+.agenda{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--linea-papel)}
+.dia{display:grid;grid-template-columns:150px 90px minmax(0,1fr) auto;gap:20px;align-items:center;padding:20px 0;border-bottom:1px solid var(--linea-papel)}
+.dia .fecha{font-weight:700}
+.dia .fecha small{display:block;font-weight:500;color:var(--musgo);font-size:14px}
+.dia .h{font-family:var(--display);font-size:26px;font-variant-numeric:tabular-nums}
+.dia h3{font-size:24px}
+.dia p{color:var(--musgo);font-size:15px}
+.dia .tipo{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px;border:1.5px solid var(--linea-papel);white-space:nowrap}
+.dia.es-hoy .fecha{color:#A4502D}
+.dia.es-hoy .tipo{background:var(--tinta);color:var(--anis);border-color:var(--tinta)}
+@media (max-width:760px){.dia{grid-template-columns:1fr auto;gap:6px 14px}.dia .fecha{grid-column:1/-1;display:flex;gap:8px;align-items:baseline}.dia .fecha small{display:inline}.dia .h{grid-column:1;font-size:22px}.dia .tipo{grid-column:2;grid-row:2}.dia .txt{grid-column:1/-1}}
+
+/* Reservas */
+.reserva{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:900px){.reserva{grid-template-columns:1fr}}
+form{display:grid;gap:18px}
+.campos{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:560px){.campos{grid-template-columns:1fr}}
+.campo{display:grid;gap:7px}
+.campo label,.campo legend{font-size:14px;font-weight:600;color:#D9DECD}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:9px}
+input[type=text],input[type=tel],input[type=date],select,textarea{width:100%;font:500 16px/1.3 var(--body);color:var(--claro);background:var(--noche-2);border:1.5px solid var(--linea);border-radius:10px;padding:13px 14px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--pastis)}
+textarea{resize:vertical;min-height:84px}
+.contador{display:flex;align-items:center;border:1.5px solid var(--linea);border-radius:10px;background:var(--noche-2);width:max-content}
+.contador button{width:48px;height:48px;background:none;border:0;color:var(--claro);font-size:22px;cursor:pointer}
+.contador button:hover{color:var(--pastis)}
+.contador input{width:52px;text-align:center;background:none;border:0;color:var(--claro);font:700 18px var(--body);font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+.contador input::-webkit-inner-spin-button{-webkit-appearance:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip label{display:inline-block;padding:10px 14px;border-radius:999px;border:1.5px solid var(--linea);cursor:pointer;font-size:15px;font-weight:500;color:var(--claro)}
+.chip input:checked + label{background:var(--pastis);color:var(--tinta);border-color:var(--pastis)}
+.chip input:focus-visible + label{outline:2px solid var(--pastis);outline-offset:2px}
+.aviso{font-size:14px;color:var(--pastis)}
+.error{font-size:14px;color:#F0A58A}
+.ticket{background:var(--anis);color:var(--tinta);border-radius:6px;padding:28px 26px 30px;position:relative;display:grid;gap:14px;
+  -webkit-mask:radial-gradient(circle 8px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 8px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 8px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 8px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat}
+.ticket h3{font-size:28px}
+.ticket dl{margin:0;display:grid;gap:9px}
+.ticket dl div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px dashed var(--linea-papel);padding-bottom:9px}
+.ticket dt{color:var(--musgo);font-size:15px}
+.ticket dd{margin:0;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.ticket .pie{font-size:14px;color:var(--musgo)}
+.confirmacion{border:1.5px solid var(--pastis);border-radius:18px;padding:32px;display:grid;gap:14px;background:rgba(239,203,85,.06)}
+.confirmacion h3{font-size:36px}
+.confirmacion .codigo{font-family:var(--display);font-size:28px;color:var(--pastis);letter-spacing:.04em}
+.confirmacion p{color:#D9DECD}
+
+/* Eventos */
+.eventos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:860px){.eventos{grid-template-columns:1fr}}
+.evento{background:var(--noche-2);border-radius:var(--radio);padding:28px;display:grid;gap:10px;align-content:start}
+.evento h3{font-size:26px}
+.evento p{color:var(--suave)}
+.eventos-cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.eventos-cta p{color:var(--suave)}
+
+/* Visítanos */
+.visita{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:start}
+@media (max-width:860px){.visita{grid-template-columns:1fr}}
+.direccion{font-family:var(--display);font-size:clamp(28px,3.4vw,40px);line-height:1.15}
+.datos{display:grid;gap:22px}
+.tel{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.tel span{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;user-select:all}
+.copiar{font:600 14px var(--body);padding:8px 14px;border-radius:999px;border:1.5px solid var(--linea-papel);background:transparent;color:var(--tinta);cursor:pointer}
+.copiar:hover{border-color:var(--tinta)}
+.horario{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.horario td{padding:11px 0;border-bottom:1px solid var(--linea-papel)}
+.horario td:last-child{text-align:right;font-weight:600}
+.horario tr.hoy-fila td{font-weight:700}
+.horario tr.hoy-fila td:first-child::after{content:"hoy";margin-left:10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:var(--pastis);padding:3px 7px;border-radius:5px}
+.mapa{background:var(--anis-2);border-radius:var(--radio);padding:12px}
+.mapa svg{display:block;width:100%;height:auto}
+.mapa figcaption{font-size:13px;color:var(--musgo);padding:8px 6px 2px}
+.llegar{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.llegar li{display:grid;grid-template-columns:90px 1fr;gap:12px;font-size:15px}
+.llegar b{font-weight:700}
+
+/* Footer */
+footer{padding-block:48px 110px;border-top:1px solid var(--linea)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center}
+footer p{color:var(--suave);font-size:14px;max-width:52ch}
+.demo-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pastis);border:1px solid rgba(239,203,85,.4);border-radius:999px;padding:5px 10px}
+
+/* Barra móvil */
+.barra-movil{display:none}
+@media (max-width:700px){
+  .barra-movil{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(16,33,31,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--linea)}
+  .barra-movil .btn{padding:14px 10px;font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="anis" viewBox="0 0 32 32">
+      <g fill="currentColor">
+        <ellipse cx="16" cy="7.5" rx="3.6" ry="6.5"/>
+        <ellipse cx="16" cy="7.5" rx="3.6" ry="6.5" transform="rotate(45 16 16)"/>
+        <ellipse cx="16" cy="7.5" rx="3.6" ry="6.5" transform="rotate(90 16 16)"/>
+        <ellipse cx="16" cy="7.5" rx="3.6" ry="6.5" transform="rotate(135 16 16)"/>
+        <ellipse cx="16" cy="7.5" rx="3.6" ry="6.5" transform="rotate(180 16 16)"/>
+        <ellipse cx="16" cy="7.5" rx="3.6" ry="6.5" transform="rotate(225 16 16)"/>
+        <ellipse cx="16" cy="7.5" rx="3.6" ry="6.5" transform="rotate(270 16 16)"/>
+        <ellipse cx="16" cy="7.5" rx="3.6" ry="6.5" transform="rotate(315 16 16)"/>
+      </g>
+      <circle cx="16" cy="16" r="3" fill="#10211F"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Le Pastis, inicio"><svg style="color:var(--pastis)"><use href="#anis"/></svg>Le Pastis</a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#ambiente">Ambiente</a>
+      <a href="#carta">Carta</a>
+      <a href="#plan">Planes en grupo</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#visitanos">Cómo llegar</a>
+    </nav>
+    <span class="estado" id="estado"><span class="punto"></span><span id="estado-txt">Abierto</span></span>
+    <a class="btn btn-pastis" href="#reservar">Reservar mesa</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero" aria-label="Portada">
+    <canvas id="escena" aria-hidden="true"></canvas>
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Paseo de la Ribera · junto al Puente de Hierro</p>
+      <h1 style="margin-top:14px">Quedamos en <em>Le&nbsp;Pastis.</em></h1>
+      <p class="lead">Terraza con aire francés en la orilla del Ebro. Cócteles, cocina de bistró y música hasta tarde bajo las guirnaldas de luces. Para ir con tus amigos y olvidarte del reloj.</p>
+      <div class="ctas">
+        <a class="btn btn-pastis" href="#reservar">Reservar mesa</a>
+        <a class="btn btn-linea" href="#carta">Ver la carta</a>
+      </div>
+      <dl class="hoy">
+        <div><dt>Hoy abrimos</dt><dd id="hoy-horario">18:00 – 01:00</dd></div>
+        <div><dt>Puesta de sol hoy</dt><dd id="hoy-sol">20:00</dd></div>
+        <div><dt>Esta noche</dt><dd id="hoy-plan">Música en la terraza</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="toldo" aria-hidden="true"></div>
+
+  <section id="ambiente" style="padding-top:clamp(48px,6vw,80px)">
+    <div class="wrap">
+      <div class="cabecera">
+        <p class="eyebrow">El ambiente</p>
+        <h2>Una tarde en la orilla, de la primera ronda a la última canción</h2>
+        <p>Mesas bajo el toldo, el río delante y el Pilar al fondo. Aquí se viene sin prisa: a ponerse al día, a celebrar algo o a no celebrar nada.</p>
+      </div>
+      <div class="momentos">
+        <article class="momento">
+          <svg viewBox="0 0 44 44" fill="none" stroke="var(--pastis)" stroke-width="2" aria-hidden="true"><path d="M13 8h18l-2 26a3 3 0 0 1-3 3h-8a3 3 0 0 1-3-3L13 8z"/><path d="M14 18h16" stroke-dasharray="2 3"/><path d="M15.2 22h13.6l-1 12a2 2 0 0 1-2 2h-7.6a2 2 0 0 1-2-2z" fill="var(--pastis)" fill-opacity=".35" stroke="none"/></svg>
+          <span class="hora">desde las 18:00</span>
+          <h3>El primer pastis</h3>
+          <p>Anís, agua fresca y hielo: se vuelve lechoso al mezclarlo. Es nuestro ritual de bienvenida, y también hay vermú, cañas y cócteles de autor.</p>
+        </article>
+        <article class="momento">
+          <svg viewBox="0 0 44 44" fill="none" stroke="var(--atardecer)" stroke-width="2" aria-hidden="true"><path d="M8 30h28M12 36h20"/><path d="M13 30a9 9 0 0 1 18 0"/><path d="M22 10v5M10 17l3 3M34 17l-3 3"/></svg>
+          <span class="hora" id="momento-sol">hacia las 20:00</span>
+          <h3>La hora dorada</h3>
+          <p>El sol cae detrás del puente y el Ebro se vuelve naranja. Las mesas de primera fila vuelan: resérvalas antes de que empiece el espectáculo.</p>
+        </article>
+        <article class="momento">
+          <svg viewBox="0 0 44 44" fill="none" stroke="var(--pastis)" stroke-width="2" aria-hidden="true"><path d="M4 10c12 8 24 8 36 0"/><path d="M12 14v4M22 16v4M32 14v4"/><circle cx="12" cy="21" r="3" fill="var(--pastis)"/><circle cx="22" cy="23" r="3" fill="var(--pastis)"/><circle cx="32" cy="21" r="3" fill="var(--pastis)"/><path d="M14 34l4-4 4 3 5-6 5 7"/></svg>
+          <span class="hora">hasta las 02:30</span>
+          <h3>Guirnaldas y música</h3>
+          <p>Se encienden las luces, suena chanson française, folk en directo o una sesión de DJ, y la terraza se convierte en el mejor salón de Zaragoza.</p>
+        </article>
+      </div>
+      <div class="sellos">
+        <span class="sello"><svg style="color:var(--pastis)"><use href="#anis"/></svg>Mesas grandes para grupos</span>
+        <span class="sello"><svg style="color:var(--pastis)"><use href="#anis"/></svg>Brunch el fin de semana desde las 11:00</span>
+        <span class="sello"><svg style="color:var(--pastis)"><use href="#anis"/></svg>Música en directo y sesiones de DJ</span>
+        <span class="sello"><svg style="color:var(--pastis)"><use href="#anis"/></svg>Vistas al Ebro y al Pilar</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="toldo sobre-papel" aria-hidden="true"></div>
+
+  <section id="carta" class="papel" style="padding-top:clamp(48px,6vw,80px)">
+    <div class="wrap">
+      <div class="cabecera">
+        <p class="eyebrow">La carta</p>
+        <h2>Cocina de bistró para compartir en la mesa</h2>
+        <p>Platos pensados para pedir al centro y picar entre todos, con un guiño a París y producto de aquí.</p>
+      </div>
+      <div class="carta-grid">
+        <div>
+          <div class="tabs" role="tablist" aria-label="Secciones de la carta" id="tabs"></div>
+          <ul class="platos" id="platos" role="tabpanel" aria-live="polite"></ul>
+          <p class="nota-precios">Precios de ejemplo para la demo. IVA incluido. Pregúntanos por alérgenos.</p>
+        </div>
+        <aside class="pizarra" aria-label="Sugerencias de la pizarra">
+          <h3>Hoy en la pizarra</h3>
+          <div class="bloque">
+            <b>Fórmula del día · lunes a viernes</b>
+            <span>Plato del día + bebida + café</span>
+            <span class="precio-tiza">14,90 €</span>
+          </div>
+          <hr>
+          <div class="bloque">
+            <b>Menú de fin de semana · 3 platos</b>
+            <span>Ensalada de queso de cabra, cochinillo con salsa de maracuyá y crêpe Suzette</span>
+            <span class="precio-tiza">24 €</span>
+          </div>
+          <hr>
+          <div class="bloque">
+            <b>Para la hora dorada</b>
+            <span>Pastis + tabla de quesos para dos</span>
+            <span class="precio-tiza">18 €</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="plan">
+    <div class="wrap">
+      <div class="cabecera">
+        <p class="eyebrow">Planes en grupo</p>
+        <h2>¿Venís en grupo? Te lo dejamos montado</h2>
+        <p>Elige el plan, dinos cuántos sois y verás lo que incluye y lo que sale por cabeza. Sin sorpresas al pedir la cuenta.</p>
+      </div>
+      <div class="plan">
+        <div>
+          <div class="opciones" id="opciones" role="radiogroup" aria-label="Tipo de plan"></div>
+          <div class="personas">
+            <label for="grupo">¿Cuántos sois?</label>
+            <div class="rango">
+              <input type="range" id="grupo" min="2" max="30" value="6">
+              <output id="grupo-out" for="grupo">6</output>
+            </div>
+          </div>
+        </div>
+        <div class="resumen-plan" aria-live="polite">
+          <p class="eyebrow" id="plan-eyebrow">Tu plan</p>
+          <h3 id="plan-nombre">Plan atardecer</h3>
+          <ul id="plan-incluye"></ul>
+          <div class="regalos" id="plan-regalos"></div>
+          <div class="cifras">
+            <div><div class="grande" id="plan-pp">17 €</div><div class="peq">por persona</div></div>
+            <div style="text-align:right"><div class="grande" id="plan-total" style="font-size:30px">102 €</div><div class="peq" id="plan-total-txt">total para 6</div></div>
+          </div>
+          <button class="btn btn-pastis" type="button" id="plan-reservar">Reservar este plan</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="agenda" class="papel">
+    <div class="wrap">
+      <div class="cabecera">
+        <p class="eyebrow">Agenda</p>
+        <h2>Qué pasa esta semana en la terraza</h2>
+        <p>Directos, DJ y pequeños rituales. La programación de abajo es de ejemplo y se actualiza cada semana.</p>
+      </div>
+      <ol class="agenda" id="agenda-lista"></ol>
+    </div>
+  </section>
+
+  <section id="reservar">
+    <div class="wrap">
+      <div class="cabecera">
+        <p class="eyebrow">Reservas</p>
+        <h2>Guárdate la mesa en un minuto</h2>
+        <p>Sin llamadas ni esperas. Dinos cuándo venís y dónde os apetece sentaros.</p>
+      </div>
+      <div class="reserva">
+        <div>
+          <form id="form-reserva" novalidate>
+            <div class="campos">
+              <div class="campo">
+                <label for="r-nombre">Nombre</label>
+                <input type="text" id="r-nombre" autocomplete="name" placeholder="Lucía García" required>
+              </div>
+              <div class="campo">
+                <label for="r-tel">Teléfono</label>
+                <input type="tel" id="r-tel" autocomplete="tel" placeholder="600 123 456" required>
+              </div>
+              <div class="campo">
+                <label for="r-fecha">Día</label>
+                <input type="date" id="r-fecha" required>
+              </div>
+              <div class="campo">
+                <label for="r-hora">Hora</label>
+                <select id="r-hora" required></select>
+              </div>
+            </div>
+            <div class="campos">
+              <div class="campo">
+                <label for="r-personas">Personas</label>
+                <div class="contador">
+                  <button type="button" id="menos" aria-label="Una persona menos">−</button>
+                  <input type="number" id="r-personas" min="1" max="40" value="4" inputmode="numeric">
+                  <button type="button" id="mas" aria-label="Una persona más">+</button>
+                </div>
+              </div>
+              <div class="campo">
+                <label for="r-ocasion">Ocasión</label>
+                <select id="r-ocasion">
+                  <option>Quedada con amigos</option>
+                  <option>Afterwork</option>
+                  <option>Cumpleaños</option>
+                  <option>Cita</option>
+                  <option>Despedida</option>
+                  <option>Empresa o evento privado</option>
+                </select>
+              </div>
+            </div>
+            <p class="aviso" id="aviso-grupo" hidden>Para grupos de más de 12 te llamamos para preparar la zona y el menú.</p>
+            <fieldset>
+              <legend>¿Dónde os sentamos?</legend>
+              <div class="chips">
+                <span class="chip"><input type="radio" name="zona" id="z-rio" value="Primera fila al río" checked><label for="z-rio">Primera fila al río</label></span>
+                <span class="chip"><input type="radio" name="zona" id="z-toldo" value="Bajo el toldo"><label for="z-toldo">Bajo el toldo</label></span>
+                <span class="chip"><input type="radio" name="zona" id="z-musica" value="Cerca de la música"><label for="z-musica">Cerca de la música</label></span>
+                <span class="chip"><input type="radio" name="zona" id="z-igual" value="Donde haya sitio"><label for="z-igual">Me da igual</label></span>
+              </div>
+            </fieldset>
+            <div class="campo">
+              <label for="r-notas">Algo que debamos saber (opcional)</label>
+              <textarea id="r-notas" placeholder="Alergias, una tarta con velas, venimos con carrito…"></textarea>
+            </div>
+            <p class="error" id="r-error" hidden></p>
+            <div><button class="btn btn-pastis" type="submit">Solicitar reserva</button></div>
+          </form>
+          <div class="confirmacion" id="confirmacion" hidden>
+            <p class="eyebrow">Solicitud recibida</p>
+            <h3 id="conf-titulo">¡Hecho!</h3>
+            <p class="codigo" id="conf-codigo">LP-0000</p>
+            <p id="conf-texto"></p>
+            <p style="font-size:14px;color:var(--suave)">Demo: la solicitud se guarda solo en este navegador. En la web final llegará al instante al restaurante y el cliente recibirá la confirmación.</p>
+            <div><button class="btn btn-linea" type="button" id="otra">Hacer otra reserva</button></div>
+          </div>
+        </div>
+        <aside class="ticket" aria-label="Resumen de la reserva">
+          <p class="eyebrow">Resumen</p>
+          <h3>Mesa en Le Pastis</h3>
+          <dl>
+            <div><dt>A nombre de</dt><dd id="t-nombre">—</dd></div>
+            <div><dt>Día</dt><dd id="t-fecha">—</dd></div>
+            <div><dt>Hora</dt><dd id="t-hora">—</dd></div>
+            <div><dt>Personas</dt><dd id="t-personas">4</dd></div>
+            <div><dt>Zona</dt><dd id="t-zona">Primera fila al río</dd></div>
+            <div><dt>Ocasión</dt><dd id="t-ocasion">Quedada con amigos</dd></div>
+          </dl>
+          <p class="pie" id="t-sol">Ese día el sol se pone a las 20:00. Llegad un rato antes para verlo desde la mesa.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="eventos" style="padding-top:0">
+    <div class="wrap">
+      <div class="cabecera">
+        <p class="eyebrow">Celebraciones</p>
+        <h2>Tu celebración, a la orilla del Ebro</h2>
+        <p>Reservamos una zona de la terraza para tu grupo y preparamos el menú contigo.</p>
+      </div>
+      <div class="eventos">
+        <article class="evento">
+          <h3>Cumpleaños</h3>
+          <p>Mesa decorada, tarta con velas y ronda de pastis para brindar. Tú solo trae a la gente.</p>
+        </article>
+        <article class="evento">
+          <h3>Afterwork de empresa</h3>
+          <p>Cócteles, bandejas para compartir y DJ. Una forma mejor de cerrar el trimestre que en una sala de reuniones.</p>
+        </article>
+        <article class="evento">
+          <h3>Despedidas</h3>
+          <p>Cena bistró, música y la noche por delante, a un paseo del centro.</p>
+        </article>
+      </div>
+      <div class="eventos-cta">
+        <button class="btn btn-pastis" type="button" id="pedir-evento">Pedir presupuesto</button>
+        <p>Te respondemos con una propuesta en menos de 24 horas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="visitanos" class="papel">
+    <div class="wrap">
+      <div class="cabecera">
+        <p class="eyebrow">Cómo llegar</p>
+        <h2>En la ribera, a un paseo del centro</h2>
+      </div>
+      <div class="visita">
+        <div class="datos">
+          <p class="direccion">Paseo de la Ribera, s/n<br>Junto al Puente de Hierro<br>50014 Zaragoza</p>
+          <div class="tel">
+            <span id="telefono">976 95 06 94</span>
+            <button class="copiar" type="button" id="copiar">Copiar teléfono</button>
+          </div>
+          <div><a class="btn btn-tinta" href="https://www.google.com/maps/search/?api=1&amp;query=Le+Pastis+Paseo+de+la+Ribera+Zaragoza" target="_blank" rel="noopener">Abrir en Google Maps</a></div>
+          <table class="horario" aria-label="Horario">
+            <tbody id="horario"></tbody>
+          </table>
+        </div>
+        <div class="datos">
+          <figure class="mapa" style="margin:0">
+            <svg viewBox="0 0 420 250" role="img" aria-label="Esquema: Le Pastis está en la orilla norte del Ebro, junto al Puente de Hierro, frente al centro y al Pilar.">
+              <rect width="420" height="250" fill="#E1E5D3"/>
+              <path d="M0 108 C 70 96, 130 122, 210 110 S 350 96, 420 112 L 420 150 C 350 136, 290 156, 210 148 S 70 134, 0 146 Z" fill="#9FC0B8"/>
+              <g fill="#13231F">
+                <rect x="96" y="96" width="7" height="60" rx="2"/>
+                <rect x="206" y="100" width="7" height="56" rx="2"/>
+                <rect x="296" y="96" width="9" height="62" rx="2"/>
+              </g>
+              <g font-family="Figtree, sans-serif" font-size="11" fill="#56685C">
+                <text x="99" y="178" text-anchor="middle">P. Santiago</text>
+                <text x="209" y="178" text-anchor="middle">P. de Piedra</text>
+                <text x="300" y="182" text-anchor="middle" font-weight="700" fill="#13231F">P. de Hierro</text>
+                <text x="210" y="134" text-anchor="middle" font-style="italic" fill="#2E5A52">Ebro</text>
+                <text x="30" y="40">Arrabal · orilla norte</text>
+                <text x="30" y="232">Centro · orilla sur</text>
+              </g>
+              <g transform="translate(154 190)" fill="#13231F">
+                <rect x="-22" y="0" width="44" height="12"/>
+                <rect x="-24" y="-18" width="5" height="30"/><rect x="19" y="-18" width="5" height="30"/>
+                <path d="M-7 0 a7 7 0 0 1 14 0z"/>
+                <text x="0" y="28" text-anchor="middle" font-family="Figtree, sans-serif" font-size="11" fill="#56685C">Basílica del Pilar</text>
+              </g>
+              <g transform="translate(332 72)">
+                <circle r="20" fill="#EFCB55" opacity=".35"/>
+                <path d="M0 14 C -10 2, -11 -4, -11 -8 a11 11 0 0 1 22 0 c0 4 -1 10 -11 22z" fill="#13231F"/>
+                <circle cy="-8" r="4.5" fill="#EFCB55"/>
+                <text x="16" y="-12" font-family="Gloock, Georgia, serif" font-size="17" fill="#13231F">Le Pastis</text>
+              </g>
+            </svg>
+            <figcaption>Esquema orientativo, no a escala.</figcaption>
+          </figure>
+          <ul class="llegar">
+            <li><b>A pie</b><span>Desde el Pilar, cruza por el Puente de Piedra o el de Hierro y baja al paseo de la ribera.</span></li>
+            <li><b>En bici</b><span>El carril de la ribera del Ebro te deja en la puerta. Hay sitio para dejarla cerca.</span></li>
+            <li><b>Temporada</b><span>Terraza al aire libre: abrimos con el buen tiempo. Consulta el horario antes de venir.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#inicio"><svg style="color:var(--pastis)"><use href="#anis"/></svg>Le Pastis</a>
+    <p>Paseo de la Ribera, s/n, junto al Puente de Hierro · 50014 Zaragoza · 976 95 06 94</p>
+    <span class="demo-tag">Demo de propuesta web · carta, precios y agenda de ejemplo</span>
+  </div>
+</footer>
+
+<div class="barra-movil">
+  <a class="btn btn-linea" href="#visitanos">Cómo llegar</a>
+  <a class="btn btn-pastis" href="#reservar">Reservar</a>
+</div>
+
+<script>
+(function(){
+'use strict';
+var TZ = 'Europe/Madrid';
+var DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+var MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+// Minutos desde medianoche; >1440 significa que cierra de madrugada del día siguiente.
+var HORARIO = {0:[660,1590],1:[1080,1500],2:[1080,1500],3:[1080,1500],4:[1080,1500],5:[1080,1590],6:[660,1590]};
+var $ = function(id){ return document.getElementById(id); };
+var euro = function(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2}) + ' €'; };
+function hhmm(m){ m = ((m % 1440) + 1440) % 1440; return String(Math.floor(m/60)).padStart(2,'0') + ':' + String(m%60).padStart(2,'0'); }
+
+function ahoraMadrid(){
+  var p = {};
+  new Intl.DateTimeFormat('en-GB',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false,weekday:'short'})
+    .formatToParts(new Date()).forEach(function(x){ p[x.type] = x.value; });
+  var h = +p.hour; if (h === 24) h = 0;
+  return {y:+p.year, mo:+p.month, d:+p.day, wd:{Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[p.weekday], min:h*60 + +p.minute, iso:p.year+'-'+p.month+'-'+p.day};
+}
+
+// Puesta de sol (algoritmo NOAA) para la ribera del Ebro.
+function puestaSol(y, mo, d){
+  var rad = Math.PI/180, lat = 41.6597, lon = -0.8750;
+  var n = Math.round((Date.UTC(y,mo-1,d) - Date.UTC(y,0,1)) / 864e5) + 1;
+  var g = 2*Math.PI/365*(n-1);
+  var eq = 229.18*(0.000075+0.001868*Math.cos(g)-0.032077*Math.sin(g)-0.014615*Math.cos(2*g)-0.040849*Math.sin(2*g));
+  var dec = 0.006918-0.399912*Math.cos(g)+0.070257*Math.sin(g)-0.006758*Math.cos(2*g)+0.000907*Math.sin(2*g)-0.002697*Math.cos(3*g)+0.00148*Math.sin(3*g);
+  var ha = Math.acos(Math.cos(90.833*rad)/(Math.cos(lat*rad)*Math.cos(dec)) - Math.tan(lat*rad)*Math.tan(dec)) / rad;
+  var utcMin = 720 - 4*(lon - ha) - eq;
+  var fecha = new Date(Date.UTC(y,mo-1,d) + utcMin*60000);
+  var txt = new Intl.DateTimeFormat('es-ES',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hour12:false}).format(fecha);
+  var parts = txt.split(':');
+  return {txt:txt, min:(+parts[0])*60 + (+parts[1])};
+}
+
+var ahora = ahoraMadrid();
+var solHoy = puestaSol(ahora.y, ahora.mo, ahora.d);
+
+/* ---------- Estado abierto / cerrado ---------- */
+function pintarEstado(){
+  var n = ahoraMadrid();
+  var hoy = HORARIO[n.wd], ayer = HORARIO[(n.wd+6)%7], manana = HORARIO[(n.wd+1)%7];
+  var abierto = false, txt;
+  if (n.min + 1440 < ayer[1]) { abierto = true; txt = 'Abierto · cierra a las ' + hhmm(ayer[1]); }
+  else if (n.min >= hoy[0] && n.min < hoy[1]) { abierto = true; txt = 'Abierto · cierra a las ' + hhmm(hoy[1]); }
+  else if (n.min < hoy[0]) { txt = 'Abrimos hoy a las ' + hhmm(hoy[0]); }
+  else { txt = 'Abrimos mañana a las ' + hhmm(manana[0]); }
+  $('estado').classList.toggle('cerrado', !abierto);
+  $('estado-txt').textContent = txt;
+}
+pintarEstado();
+setInterval(pintarEstado, 60000);
+
+$('hoy-horario').textContent = hhmm(HORARIO[ahora.wd][0]) + ' – ' + hhmm(HORARIO[ahora.wd][1]);
+$('hoy-sol').textContent = solHoy.txt + ' h';
+$('momento-sol').textContent = 'hoy, a las ' + solHoy.txt;
+
+/* ---------- Carta ---------- */
+var CARTA = [
+  {id:'compartir', nombre:'Para compartir', platos:[
+    {n:'Tabla de quesos franceses', d:'Brie, comté, roquefort y chèvre con membrillo, nueces y pan de masa madre.', p:15, t:'fav'},
+    {n:'Patatas Le Pastis', d:'Patata confitada y crujiente con alioli de mostaza y cebollino.', p:7.5},
+    {n:'Croquetas de jamón', d:'Seis unidades, cremosas por dentro, como deben ser.', p:9},
+    {n:'Hummus de la casa', d:'Con crudités, aceite de pimentón y pan de pita tostado.', p:8.5, t:'veg'},
+    {n:'Tataki de atún', d:'Sésamo, soja cítrica y encurtidos de la casa.', p:16},
+    {n:'Bandeja de sushi', d:'Dieciséis piezas variadas, ideal para el centro de la mesa.', p:19}
+  ]},
+  {id:'bistro', nombre:'Burgers y bistró', platos:[
+    {n:'Burger Le Bistro', d:'250 g de vaca, queso brie, rúcula, cebolla roja y alioli de mostaza.', p:14.5, t:'fav'},
+    {n:'Croque monsieur', d:'Jamón cocido, bechamel y gruyère gratinado. Con ensalada.', p:10},
+    {n:'Croque madame', d:'El de siempre, con huevo a la plancha encima.', p:11},
+    {n:'Burger de garbanzo', d:'Con queso de cabra, cebolla caramelizada y brotes.', p:13, t:'veg'},
+    {n:'Steak tartar', d:'Cortado a cuchillo, con patatas y yema curada.', p:18},
+    {n:'Ensalada niçoise', d:'Atún, huevo, judía verde, aceitunas negras y patata.', p:12.5}
+  ]},
+  {id:'crepes', nombre:'Crêpes', platos:[
+    {n:'Crêpe complète', d:'Jamón, queso emmental y huevo. La clásica de Bretaña.', p:9},
+    {n:'Crêpe de chèvre y miel', d:'Queso de cabra, miel, nueces y rúcula.', p:10, t:'veg'},
+    {n:'Crêpe Suzette', d:'Mantequilla, naranja y Grand Marnier flambeado.', p:7.5, t:'fav'},
+    {n:'Crêpe de chocolate y plátano', d:'Para compartir… o no.', p:6.5}
+  ]},
+  {id:'cocteles', nombre:'Cócteles y pastis', platos:[
+    {n:'Pastis de la casa', d:'Anís, agua fresca y hielo. Se vuelve lechoso al mezclar: es el famoso «louche».', p:4.5, t:'fav'},
+    {n:'Gin Fizz', d:'Ginebra, limón, azúcar y soda. Fresco y ligero.', p:9},
+    {n:'Negroni', d:'Ginebra, vermú rojo y Campari, a partes iguales.', p:9},
+    {n:'Mojito', d:'Ron blanco, hierbabuena, lima y soda.', p:8.5},
+    {n:'Cosmopolitan', d:'Vodka, triple seco, arándano y lima.', p:9},
+    {n:'Bloody Mary', d:'El de los domingos de brunch, bien especiado.', p:9},
+    {n:'Spritz del Ebro', d:'Aperitivo, cava y un toque de pomelo.', p:8},
+    {n:'Vermú de grifo', d:'Con naranja y aceituna.', p:3.5}
+  ]}
+];
+var tabActiva = 'compartir';
+function pintarTabs(){
+  $('tabs').innerHTML = CARTA.map(function(s){
+    return '<button class="tab" role="tab" type="button" id="tab-'+s.id+'" aria-selected="'+(s.id===tabActiva)+'" data-id="'+s.id+'">'+s.nombre+'</button>';
+  }).join('');
+  var s = CARTA.filter(function(x){ return x.id === tabActiva; })[0];
+  $('platos').setAttribute('aria-labelledby','tab-'+s.id);
+  $('platos').innerHTML = s.platos.map(function(p){
+    var etq = p.t === 'fav' ? '<span class="etq fav">Favorito</span>' : p.t === 'veg' ? '<span class="etq veg">Veggie</span>' : '';
+    return '<li class="plato"><div class="fila"><span class="nombre">'+p.n+etq+'</span><span class="puntos"></span><span class="precio">'+euro(p.p)+'</span></div><p class="desc">'+p.d+'</p></li>';
+  }).join('');
+}
+$('tabs').addEventListener('click', function(e){
+  var b = e.target.closest('.tab'); if (!b) return;
+  tabActiva = b.dataset.id; pintarTabs();
+  $('tab-'+tabActiva).focus();
+});
+pintarTabs();
+
+/* ---------- Planes en grupo ---------- */
+var PLANES = [
+  {id:'atardecer', nombre:'Plan atardecer', corto:'Pastis o cóctel y picoteo al sol', pp:17, min:2,
+   incluye:['Un cóctel, pastis o vermú por persona','Tabla de quesos y patatas Le Pastis al centro','Mesa en primera fila al río, según disponibilidad']},
+  {id:'cena', nombre:'Cena bistró', corto:'Para compartir, principal y postre', pp:27, min:2,
+   incluye:['Entrantes para compartir al centro','Burger Le Bistro, crêpe salada o plato del día','Bebida y crêpes dulces para compartir']},
+  {id:'celebracion', nombre:'Celebración', corto:'Cena, cóctel y tarta con velas', pp:34, min:6,
+   incluye:['Cena bistró completa','Un cóctel por persona para brindar','Tarta con velas y mesa decorada bajo el toldo']}
+];
+var planActivo = 'atardecer';
+$('opciones').innerHTML = PLANES.map(function(p){
+  return '<div class="opcion"><input type="radio" name="plan" id="plan-'+p.id+'" value="'+p.id+'"'+(p.id===planActivo?' checked':'')+'>'+
+    '<label for="plan-'+p.id+'"><span class="radio"></span><span><strong>'+p.nombre+'</strong><small>'+p.corto+'</small></span><span class="pp">'+p.pp+' €/pers.</span></label></div>';
+}).join('');
+var check = '<svg viewBox="0 0 16 16" fill="none" stroke="var(--pastis)" stroke-width="2.2"><path d="M3 8.5l3 3 7-7"/></svg>';
+function pintarPlan(){
+  var n = +$('grupo').value;
+  var p = PLANES.filter(function(x){ return x.id === planActivo; })[0];
+  $('grupo-out').textContent = n;
+  $('plan-nombre').textContent = p.nombre;
+  $('plan-eyebrow').textContent = 'Tu plan · ' + n + ' personas';
+  $('plan-incluye').innerHTML = p.incluye.map(function(t){ return '<li>'+check+'<span>'+t+'</span></li>'; }).join('');
+  var regalos = [];
+  if (n >= 8) regalos.push('Grupos de 8 o más: ronda de pastis de bienvenida gratis');
+  if (n >= 15) regalos.push('A partir de 15: zona de la terraza reservada para vosotros');
+  if (n < p.min) regalos.push('Este plan es a partir de ' + p.min + ' personas');
+  $('plan-regalos').innerHTML = regalos.map(function(t){ return '<p class="regalo"><svg width="16" height="16" style="color:var(--pastis);flex:none"><use href="#anis"/></svg>'+t+'</p>'; }).join('');
+  $('plan-pp').textContent = p.pp + ' €';
+  $('plan-total').textContent = euro(p.pp * n);
+  $('plan-total-txt').textContent = 'total para ' + n;
+}
+$('opciones').addEventListener('change', function(e){ planActivo = e.target.value; pintarPlan(); });
+$('grupo').addEventListener('input', pintarPlan);
+pintarPlan();
+
+/* ---------- Agenda ---------- */
+var AGENDA = {
+  0:{t:'Brunch y vermú al sol', h:'12:00', d:'Crêpes, huevos y vermú de grifo hasta las 16:00. Por la tarde, acústico al atardecer.', k:'Brunch'},
+  1:{t:'Lunes de pastis', h:'18:00', d:'Pastis a 3 € toda la tarde. El mejor remedio para empezar la semana.', k:'Promo'},
+  2:{t:'Trivial en la terraza', h:'21:30', d:'Equipos de 2 a 6 personas. El equipo ganador se lleva la ronda.', k:'Juego'},
+  3:{t:'Chanson française', h:'21:00', d:'Voz y guitarra: Brel, Piaf, Aznavour y alguna sorpresa.', k:'Directo'},
+  4:{t:'Afterwork con DJ', h:'19:30', d:'House suave y cócteles para adelantar el fin de semana.', k:'DJ'},
+  5:{t:'Sunset session', h:null, d:'DJ residente desde la hora dorada hasta la madrugada.', k:'DJ'},
+  6:{t:'Folk americano en directo', h:'21:30', d:'Banda en directo junto al río. Llega pronto si quieres mesa.', k:'Directo'}
+};
+var lista = [];
+for (var i = 0; i < 7; i++){
+  var f = new Date(Date.UTC(ahora.y, ahora.mo-1, ahora.d + i));
+  var wd = f.getUTCDay(), ev = AGENDA[wd];
+  var hora = ev.h || hhmm(puestaSol(f.getUTCFullYear(), f.getUTCMonth()+1, f.getUTCDate()).min - 30);
+  var etiqueta = i === 0 ? 'Hoy' : i === 1 ? 'Mañana' : DIAS[wd];
+  var sub = (i < 2 ? DIAS[wd].toLowerCase() + ' ' : '') + f.getUTCDate() + ' ' + MESES[f.getUTCMonth()];
+  if (i === 0) $('hoy-plan').textContent = ev.t + ' · ' + hora;
+  lista.push('<li class="dia'+(i===0?' es-hoy':'')+'"><div class="fecha">'+etiqueta+'<small>'+sub+'</small></div><div class="h">'+hora+'</div><div class="txt"><h3>'+ev.t+'</h3><p>'+ev.d+'</p></div><span class="tipo">'+ev.k+'</span></li>');
+}
+$('agenda-lista').innerHTML = lista.join('');
+
+/* ---------- Horario ---------- */
+var orden = [1,2,3,4,5,6,0];
+$('horario').innerHTML = orden.map(function(d){
+  return '<tr'+(d===ahora.wd?' class="hoy-fila"':'')+'><td>'+DIAS[d]+'</td><td>'+hhmm(HORARIO[d][0])+' – '+hhmm(HORARIO[d][1])+'</td></tr>';
+}).join('');
+
+/* ---------- Reservas ---------- */
+var fecha = $('r-fecha'), horaSel = $('r-hora'), personas = $('r-personas');
+fecha.min = ahora.iso;
+function partesISO(iso){ var a = iso.split('-'); return {y:+a[0], mo:+a[1], d:+a[2]}; }
+function turnos(iso){
+  var p = partesISO(iso), wd = new Date(p.y, p.mo-1, p.d).getDay(), h = HORARIO[wd], out = [];
+  var ahoraM = ahoraMadrid();
+  for (var m = h[0]; m <= h[1] - 90; m += 30){
+    if (iso === ahoraM.iso && m < ahoraM.min + 30) continue;
+    out.push(m);
+  }
+  return out;
+}
+function rellenarHoras(){
+  var prev = horaSel.value, t = turnos(fecha.value);
+  var sol = puestaSol.apply(null, (function(p){ return [p.y,p.mo,p.d]; })(partesISO(fecha.value)));
+  horaSel.innerHTML = t.length ? t.map(function(m){
+    var cerca = Math.abs(m - sol.min) <= 45 ? ' · atardecer' : '';
+    return '<option value="'+hhmm(m)+'">'+hhmm(m)+cerca+'</option>';
+  }).join('') : '<option value="">Sin horas libres este día</option>';
+  if (prev && [].some.call(horaSel.options, function(o){ return o.value === prev; })) horaSel.value = prev;
+  else {
+    var mejor = t.filter(function(m){ return m <= sol.min - 30; }).pop();
+    if (mejor !== undefined) horaSel.value = hhmm(mejor);
+  }
+}
+function isoMasDias(n){
+  var f = new Date(Date.UTC(ahora.y, ahora.mo-1, ahora.d + n));
+  return f.toISOString().slice(0,10);
+}
+fecha.value = turnos(ahora.iso).length ? ahora.iso : isoMasDias(1);
+rellenarHoras();
+
+function fechaLarga(iso){
+  if (!iso) return '—';
+  var p = partesISO(iso), f = new Date(p.y, p.mo-1, p.d);
+  return DIAS[f.getDay()] + ' ' + p.d + ' ' + MESES[p.mo-1];
+}
+function zona(){ var z = document.querySelector('input[name=zona]:checked'); return z ? z.value : ''; }
+function pintarTicket(){
+  var n = Math.max(1, Math.min(40, +personas.value || 1));
+  $('t-nombre').textContent = $('r-nombre').value.trim() || '—';
+  $('t-fecha').textContent = fechaLarga(fecha.value);
+  $('t-hora').textContent = horaSel.value || '—';
+  $('t-personas').textContent = n;
+  $('t-zona').textContent = zona();
+  $('t-ocasion').textContent = $('r-ocasion').value;
+  $('aviso-grupo').hidden = n <= 12;
+  if (fecha.value){
+    var p = partesISO(fecha.value), s = puestaSol(p.y, p.mo, p.d);
+    $('t-sol').textContent = 'Ese día el sol se pone a las ' + s.txt + '. Llegad un rato antes para verlo desde la mesa.';
+  }
+}
+fecha.addEventListener('change', function(){ rellenarHoras(); pintarTicket(); });
+['r-nombre','r-hora','r-personas','r-ocasion'].forEach(function(id){ $(id).addEventListener('input', pintarTicket); $(id).addEventListener('change', pintarTicket); });
+document.querySelectorAll('input[name=zona]').forEach(function(r){ r.addEventListener('change', pintarTicket); });
+$('menos').addEventListener('click', function(){ personas.value = Math.max(1, (+personas.value||1) - 1); pintarTicket(); });
+$('mas').addEventListener('click', function(){ personas.value = Math.min(40, (+personas.value||1) + 1); pintarTicket(); });
+pintarTicket();
+
+function irAReservar(){
+  var dest = $('reservar');
+  dest.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  setTimeout(function(){ $('r-nombre').focus({preventScroll:true}); }, 500);
+}
+$('plan-reservar').addEventListener('click', function(){
+  var p = PLANES.filter(function(x){ return x.id === planActivo; })[0];
+  personas.value = $('grupo').value;
+  $('r-ocasion').value = planActivo === 'celebracion' ? 'Cumpleaños' : 'Quedada con amigos';
+  $('r-notas').value = 'Queremos el ' + p.nombre + ' (' + p.pp + ' €/persona).';
+  if (planActivo === 'atardecer') document.getElementById('z-rio').checked = true;
+  pintarTicket(); irAReservar();
+});
+$('pedir-evento').addEventListener('click', function(){
+  $('r-ocasion').value = 'Empresa o evento privado';
+  personas.value = 20;
+  $('r-notas').value = 'Queremos presupuesto para un evento. Tipo de celebración: ';
+  pintarTicket(); irAReservar();
+});
+
+$('form-reserva').addEventListener('submit', function(e){
+  e.preventDefault();
+  var nombre = $('r-nombre').value.trim(), tel = $('r-tel').value.replace(/\s/g,'');
+  var err = '';
+  if (!nombre) err = 'Escribe un nombre para la reserva.';
+  else if (!/^\+?\d{9,13}$/.test(tel)) err = 'Revisa el teléfono: necesitamos 9 cifras para confirmarte la mesa.';
+  else if (!horaSel.value) err = 'Ese día no quedan horas libres. Prueba con otro día.';
+  $('r-error').textContent = err; $('r-error').hidden = !err;
+  if (err) return;
+  var codigo = 'LP-' + String(Math.floor(1000 + Math.random()*9000));
+  var n = +personas.value || 1;
+  $('conf-titulo').textContent = '¡Mesa pedida, ' + nombre.split(' ')[0] + '!';
+  $('conf-codigo').textContent = codigo;
+  $('conf-texto').textContent = fechaLarga(fecha.value) + ' a las ' + horaSel.value + ', ' + n + (n === 1 ? ' persona' : ' personas') + ', ' + zona().toLowerCase() + '. Te enviaremos la confirmación al ' + $('r-tel').value.trim() + '.';
+  try { localStorage.setItem('lepastis-ultima-reserva', JSON.stringify({codigo:codigo, nombre:nombre, fecha:fecha.value, hora:horaSel.value, personas:n, zona:zona()})); } catch(_){}
+  $('form-reserva').hidden = true; $('confirmacion').hidden = false;
+  $('confirmacion').scrollIntoView({block:'center'});
+});
+$('otra').addEventListener('click', function(){
+  $('form-reserva').reset(); fecha.value = turnos(ahora.iso).length ? ahora.iso : isoMasDias(1);
+  rellenarHoras(); pintarTicket();
+  $('confirmacion').hidden = true; $('form-reserva').hidden = false; $('r-nombre').focus();
+});
+
+/* ---------- Copiar teléfono ---------- */
+$('copiar').addEventListener('click', function(){
+  var b = this, txt = $('telefono').textContent;
+  function hecho(){ b.textContent = 'Copiado'; setTimeout(function(){ b.textContent = 'Copiar teléfono'; }, 1800); }
+  function seleccionar(){ var r = document.createRange(); r.selectNodeContents($('telefono')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Seleccionado'; }
+  try { navigator.clipboard.writeText(txt).then(hecho, seleccionar); } catch(_) { seleccionar(); }
+});
+
+/* ---------- Escena: el Ebro al atardecer ---------- */
+var cv = $('escena'), ctx = cv.getContext('2d');
+var W = 0, H = 0, DPR = 1, estatica = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function azar(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+var brillo = document.createElement('canvas'); brillo.width = brillo.height = 64;
+(function(){ var b = brillo.getContext('2d'), g = b.createRadialGradient(32,32,0,32,32,32);
+  g.addColorStop(0,'rgba(255,214,130,.9)'); g.addColorStop(.25,'rgba(255,196,110,.35)'); g.addColorStop(1,'rgba(255,190,100,0)');
+  b.fillStyle = g; b.fillRect(0,0,64,64); })();
+var edificios = [], estrellas = [], bombillas = [];
+function preparar(){
+  var r = cv.getBoundingClientRect();
+  W = r.width; H = r.height; DPR = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  var rnd = azar(7);
+  edificios = []; for (var x = W*0.3; x < W + 40;){ var w = 18 + rnd()*46; edificios.push({x:x, w:w, h:10 + rnd()*38, v:rnd()}); x += w + rnd()*6; }
+  estrellas = []; for (var i = 0; i < 70; i++) estrellas.push({x:rnd()*W, y:rnd()*H*0.35, r:rnd()*1.1+0.3, f:rnd()*6});
+  bombillas = [];
+  var guir = [[-20,H*0.05,W*0.56,H*0.13,H*0.11],[W*0.46,H*0.11,W+20,H*0.035,H*0.09]];
+  guir.forEach(function(gg,k){
+    var len = Math.hypot(gg[2]-gg[0], gg[3]-gg[1]), cnt = Math.max(8, Math.round(len/44));
+    for (var j = 1; j < cnt; j++){ var u = j/cnt; bombillas.push({g:k, u:u, f:rnd()*6.28, s:0.6+rnd()*1.4}); }
+  });
+  preparar.guir = guir;
+}
+function curva(gg,u){ return [gg[0]+(gg[2]-gg[0])*u, gg[1]+(gg[3]-gg[1])*u + gg[4]*4*u*(1-u)]; }
+function pilar(x, base, s, col){
+  ctx.fillStyle = col;
+  ctx.fillRect(x, base-24*s, 124*s, 24*s);
+  [14,28,42,82,96,110].forEach(function(k){ ctx.beginPath(); ctx.arc(x+k*s, base-24*s, 6*s, Math.PI, 0); ctx.fill(); ctx.fillRect(x+k*s-0.8*s, base-34*s, 1.6*s, 5*s); });
+  ctx.fillRect(x+52*s, base-36*s, 20*s, 12*s);
+  ctx.beginPath(); ctx.arc(x+62*s, base-36*s, 11*s, Math.PI, 0); ctx.fill();
+  ctx.fillRect(x+60.5*s, base-54*s, 3*s, 8*s);
+  [[0,66],[26,58],[92,58],[116,66]].forEach(function(t){
+    var tx = x + t[0]*s, th = t[1]*s;
+    ctx.fillRect(tx, base-th, 8*s, th);
+    ctx.fillRect(tx-1*s, base-th-5*s, 10*s, 5*s);
+    ctx.beginPath(); ctx.moveTo(tx-1*s, base-th-5*s); ctx.quadraticCurveTo(tx+4*s, base-th-9*s, tx+4*s, base-th-17*s); ctx.quadraticCurveTo(tx+4*s, base-th-9*s, tx+9*s, base-th-5*s); ctx.fill();
+    ctx.fillRect(tx+3.4*s, base-th-23*s, 1.2*s, 7*s);
+  });
+}
+function dibujar(t){
+  var hz = H*(W < 700 ? 0.56 : 0.62);
+  var cielo = ctx.createLinearGradient(0,0,0,hz);
+  cielo.addColorStop(0,'#0B1C1E'); cielo.addColorStop(.42,'#1D3A3D'); cielo.addColorStop(.72,'#5E5560'); cielo.addColorStop(.9,'#C4745A'); cielo.addColorStop(1,'#E9A66C');
+  ctx.fillStyle = cielo; ctx.fillRect(0,0,W,hz+1);
+  estrellas.forEach(function(e){ ctx.globalAlpha = 0.25 + 0.35*(0.5+0.5*Math.sin(t*0.0012+e.f)); ctx.fillStyle = '#EDEFE2'; ctx.fillRect(e.x, e.y, e.r, e.r); });
+  ctx.globalAlpha = 1;
+  var sx = W*(W < 700 ? 0.82 : 0.76);
+  var halo = ctx.createRadialGradient(sx,hz,0,sx,hz,H*0.55);
+  halo.addColorStop(0,'rgba(255,205,120,.55)'); halo.addColorStop(.35,'rgba(240,150,90,.18)'); halo.addColorStop(1,'rgba(240,150,90,0)');
+  ctx.fillStyle = halo; ctx.fillRect(0,0,W,hz);
+  ctx.fillStyle = '#FFE09A'; ctx.beginPath(); ctx.arc(sx, hz+2, Math.max(10,H*0.032), Math.PI, 0); ctx.fill();
+  // Ciudad al fondo
+  edificios.forEach(function(b){
+    ctx.fillStyle = '#2B3036'; ctx.fillRect(b.x, hz-b.h, b.w, b.h);
+    if (b.v > 0.45){ ctx.fillStyle = 'rgba(255,214,130,.55)'; for (var k = 0; k < 3; k++) ctx.fillRect(b.x+4+k*7, hz-b.h+6+ (k%2)*7, 2, 2); }
+  });
+  var s = Math.min(W*0.3/124, H*0.0036);
+  pilar(W*(W < 700 ? 0.34 : 0.5), hz, s, '#162226');
+  // Agua
+  var agua = ctx.createLinearGradient(0,hz,0,H);
+  agua.addColorStop(0,'#6E5A56'); agua.addColorStop(.18,'#2F4244'); agua.addColorStop(1,'#0C1B1B');
+  ctx.fillStyle = agua; ctx.fillRect(0,hz,W,H-hz);
+  for (var y = hz+3, i = 0; y < H; y += 5, i++){
+    var ancho = Math.max(6, (H*0.09)*(1-(y-hz)/(H-hz))*(0.6+0.4*Math.sin(i*1.7+t*0.002)));
+    ctx.fillStyle = 'rgba(255,200,120,'+(0.5*(1-(y-hz)/(H-hz))).toFixed(3)+')';
+    ctx.fillRect(sx - ancho/2 + Math.sin(t*0.0016+i)*4, y, ancho, 1.6);
+  }
+  ctx.fillStyle = 'rgba(237,239,226,.07)';
+  for (var j = 0; j < 40; j++){ var yy = hz + ((j*37.3) % (H-hz)); var xx = ((j*151.7 + t*0.012*(1+j%3)) % (W+120)) - 60; ctx.fillRect(xx, yy, 30+(j%4)*14, 1); }
+  // Puente de Hierro
+  var dk = hz + H*0.035, bs = Math.max(1, s*0.9), x1 = W*(W < 700 ? 0.7 : 0.55), alto = 15*bs;
+  ctx.strokeStyle = '#0A1515'; ctx.fillStyle = '#0A1515'; ctx.lineWidth = Math.max(1, bs*0.9);
+  ctx.fillRect(-10, dk, x1+10, 4*bs); ctx.fillRect(-10, dk-alto, x1+10, 2*bs);
+  ctx.beginPath();
+  for (var px = -10; px < x1; px += 14*bs){ var nx = Math.min(x1, px+14*bs); ctx.moveTo(px, dk); ctx.lineTo(nx, dk-alto); ctx.moveTo(px, dk-alto); ctx.lineTo(nx, dk); ctx.moveTo(px, dk-alto); ctx.lineTo(px, dk); }
+  ctx.stroke();
+  for (var pp = 60*bs; pp < x1-10; pp += 110*bs) ctx.fillRect(pp, dk, 7*bs, H*0.06);
+  for (var lp = 20*bs; lp < x1; lp += 56*bs){
+    var fl = 0.8 + 0.2*Math.sin(t*0.003 + lp);
+    ctx.globalAlpha = fl; ctx.drawImage(brillo, lp-10*bs, dk-alto-10*bs, 20*bs, 20*bs);
+    ctx.globalAlpha = 0.25*fl; ctx.fillStyle = '#FFD68A'; ctx.fillRect(lp-1, dk+H*0.03, 2, H*0.08); ctx.fillStyle = '#0A1515';
+  }
+  ctx.globalAlpha = 1;
+  // Sombra para leer el texto
+  var sombra = ctx.createLinearGradient(0,H*0.3,0,H);
+  sombra.addColorStop(0,'rgba(16,33,31,0)'); sombra.addColorStop(.55,'rgba(16,33,31,.72)'); sombra.addColorStop(1,'rgba(16,33,31,.97)');
+  ctx.fillStyle = sombra; ctx.fillRect(0,0,W,H);
+  var lateral = ctx.createLinearGradient(0,0,W*0.7,0);
+  lateral.addColorStop(0,'rgba(16,33,31,.72)'); lateral.addColorStop(1,'rgba(16,33,31,0)');
+  ctx.fillStyle = lateral; ctx.fillRect(0,0,W,H);
+  // Guirnaldas
+  var guir = preparar.guir;
+  ctx.strokeStyle = '#060D0D'; ctx.lineWidth = 1.5;
+  guir.forEach(function(gg){ ctx.beginPath(); for (var u = 0; u <= 1.001; u += 0.02){ var p = curva(gg,u); if (u === 0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]); } ctx.stroke(); });
+  bombillas.forEach(function(b){
+    var p = curva(guir[b.g], b.u), fl = 0.72 + 0.28*Math.sin(t*0.001*b.s + b.f) * Math.sin(t*0.0023 + b.f*2);
+    ctx.strokeStyle = '#060D0D'; ctx.beginPath(); ctx.moveTo(p[0],p[1]); ctx.lineTo(p[0],p[1]+7); ctx.stroke();
+    ctx.globalAlpha = fl; ctx.drawImage(brillo, p[0]-26, p[1]-16, 52, 52);
+    ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(255,230,160,'+(0.75+0.25*fl).toFixed(2)+')';
+    ctx.beginPath(); ctx.ellipse(p[0], p[1]+11, 3.2, 4.4, 0, 0, Math.PI*2); ctx.fill();
+  });
+}
+var visible = true;
+function bucle(t){ if (visible) dibujar(t); if (!estatica) requestAnimationFrame(bucle); }
+preparar();
+if (estatica) dibujar(0); else requestAnimationFrame(bucle);
+if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }).observe(cv);
+var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ preparar(); dibujar(performance.now()); }, 120); });
+})();
+</script>
+</body>
+</html>
